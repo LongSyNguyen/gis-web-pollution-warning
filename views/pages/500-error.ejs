@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- START: Head-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pick Admin</title>
+    <link rel="shortcut icon" href="/images/humg-it_logo.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- START: Template CSS-->
+    <link rel="stylesheet" href="/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/vendors/flags-icon/css/flag-icon.min.css">
+
+    <!-- END Template CSS-->
+
+    <!-- START: Custom CSS-->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- END: Custom CSS-->
+</head>
+<!-- END Head-->
+
+<!-- START: Body-->
+
+<body id="main-container" class="default bg-primary">
+    <!-- START: Main Content-->
+    <div class="container">
+        <div class="row vh-100 justify-content-between align-items-center">
+            <div class="col-12">
+                <div class="lockscreen  mt-5 mb-5">
+                    <div class="jumbotron mb-0 text-center theme-background rounded">
+                        <h1 class="display-3 font-weight-bold">500</h1>
+                        <h5><i class="ion ion-alert pr-2"></i>Lỗi máy chủ nội bộ</h5>
+                        <p>
+                        <% err_message.err %>
+                        </p>
+                        <a href="/admin/dashboard/home" class="btn btn-primary">Quay về trang chủ</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <!-- START: Template JS-->
+    <script src="/vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/vendors/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/vendors/moment/moment.js"></script>
+    <script src="/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendors/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- END: Template JS-->
+</body>
+<!-- END: Body-->
+
+</html>

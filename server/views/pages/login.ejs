@@ -1,0 +1,79 @@
+<% 
+const TITLE = locals.title;
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- START: Head-->
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/images/humg-it_logo.png" /> <!-- title icon -->
+    <title><%= TITLE %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- START: Template CSS-->
+    <link rel="stylesheet" href="/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/vendors/flags-icon/css/flag-icon.min.css">
+
+    <!-- END Template CSS-->
+
+    <!-- START: Custom CSS-->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- END: Custom CSS-->
+</head>
+<!-- END Head-->
+
+<!-- START: Body-->
+
+<body id="main-container" class="default">
+    <!-- START: Main Content-->
+    <div class="container">
+        <div class="row vh-100 justify-content-between align-items-center">
+            <div class="col-12">
+                <form action="#" class="row row-eq-height lockscreen  mt-5 mb-5">
+                    <div class="lock-image col-12 col-sm-5"></div>
+                    <div class="login-form col-12 col-sm-7">
+                        <div class="form-group mb-3">
+                            <label for="emailaddress">Địa chỉ Email</label>
+                            <input class="form-control" type="email" id="emailaddress" required=>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="password">Mật khẩu</label>
+                            <input class="form-control" type="password" required id="password">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked="">
+                                <label class="custom-control-label" for="checkbox-signin">Lưu đăng nhập</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-0">
+                            <button class="btn btn-primary" type="submit"> Log In </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- END: Content-->
+
+    <!-- START: Template JS-->
+    <script src="/vendors/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/vendors/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/vendors/moment/moment.js"></script>
+    <script src="/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendors/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- END: Template JS-->
+</body>
+<!-- END: Body-->
+
+</html>

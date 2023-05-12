@@ -1,0 +1,89 @@
+<% 
+const DESCRIPTION = locals.description;
+const TITLE = locals.title;
+// directory location start from main.ejs file
+const PAGE_CSS_REQUIRED = '../pages/' + locals.page_required.css_path;
+const PAGE_SCRIPT_REQUIRED = '../pages/' + locals.page_required.script_path;
+%>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href="/images/humg-it_logo.png" /> <!-- title icon -->
+    <meta name="description" content="<%= DESCRIPTION %>">
+    <title><%= TITLE %></title>
+
+    <!-- START: Template CSS-->
+    <link rel="stylesheet" href="/vendors/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.theme.min.css">
+    <link rel="stylesheet" href="/vendors/simple-line-icons/css/simple-line-icons.css">
+    <link rel="stylesheet" href="/vendors/flags-icon/css/flag-icon.min.css">
+    <!-- END Template CSS-->
+    <!-- PAGE CSS -->
+    <% if (locals.page_required.css_path) { %>
+      <%- include(PAGE_CSS_REQUIRED); %>
+    <% } %>
+    <!-- END: Page CSS-->
+
+    <!-- START: Custom CSS-->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- END: Custom CSS-->
+  </head>
+
+  <body id="main-container" class="default">
+    <!-- START: Pre Loader-->
+    <%- include('../partials/_pre-loader'); -%>
+    <!-- END: Pre Loader-->
+
+    <!-- START: Header-->
+    <%- include('../partials/_header'); -%>
+    <!-- END: Header-->
+
+    <!-- START: Sidebar-->
+    <%- include('../partials/_sidebar'); -%>
+    <!-- END: Sidebar-->
+
+    <!-- START: Main Content-->
+    <main>
+      <div class="container-fluid site-width">
+        <!-- START: Sidebar-->
+        <div class="row"><%- include('../partials/_breadcrumb'); -%></div>
+        <!-- END: Sidebar-->
+
+        <!-- START: Card Data-->
+        <%- body %>
+        <!-- END: Card DATA-->
+      </div>
+    </main>
+    <!-- END: Content-->
+
+    <!-- START: Footer-->
+    <%- include('../partials/_footer'); -%>
+    <!-- END: Footer-->
+
+    <!-- START: Back to top-->
+    <%- include('../partials/_back-to-top'); -%>
+    <!-- END: Back to top-->
+  </body>
+  <!-- START: Template JS-->
+  <script src="/vendors/jquery/jquery-3.3.1.min.js"></script>
+  <script src="/vendors/jquery-ui/jquery-ui.min.js"></script>
+  <script src="/vendors/moment/moment.js"></script>
+  <script src="/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendors/slimscroll/jquery.slimscroll.min.js"></script>
+  <!-- END: Template JS-->
+
+  <!-- START: APP JS-->
+  <script src="/js/ux-ui_libs/app.js"></script>
+  <!-- END: APP JS-->
+
+  <!-- CUSTOMIZE -->
+  <script src="/js/ux-ui_libs/sidebar-script.js"></script>
+
+  <% if (locals.page_required.script_path) { %>
+    <%- include(PAGE_SCRIPT_REQUIRED); %>
+  <% } %>
+</html>

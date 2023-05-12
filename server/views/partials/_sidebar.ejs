@@ -1,0 +1,106 @@
+<div class="sidebar">
+  <div class="site-width">
+    <!-- START: Menu-->
+    <ul id="side-menu" class="sidebar-menu">
+      <li class="dropdown">
+        <a href="#"><i class="icon-home mr-1"></i>Bảng điều khiển</a>
+        <ul>
+          <li>
+            <a href="/admin/dashboard/home"
+              ><i class="icon-home"></i>Trang chủ</a
+            >
+          </li>
+          <li>
+            <a href="/admin/dashboard/notification"
+              ><i class="icon-bell"></i>Thông báo</a
+            >
+          </li>
+          <li>
+            <a href="/admin/dashboard/message"
+              ><i class="icon-speech"></i>Tin nhắn</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#"><i class="icon-layers mr-1"></i>Quản trị</a>
+        <ul>
+          <li class="dropdown">
+            <a href="#"><i class="icon-globe-alt"></i>Dữ liệu môi trường</a>
+            <ul class="sub-menu">
+              <li class="dropdown">
+                <a href="#" class="d-flex align-items-center"
+                  ><i class="icon-control-pause"></i>Trạm quan trắc</a
+                >
+                <ul class="sub-menu">
+                  <li>
+                    <a href="/admin/management/env-data/stations/air"
+                      >Dữ liệu không khí</a
+                    >
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="d-flex align-items-center"
+                  ><i class="icon-control-pause"></i>Mã nguồn mở</a
+                >
+                <ul class="sub-menu">
+                  <li>
+                    <a href="/admin/management/env-data/social-networks/fb"
+                      >Open Weather Map</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="/admin/management/users"
+              ><i class="icon-people"></i>Thành viên</a
+            >
+          </li>
+          <li>
+            <a href="/admin/management/posts"
+              ><i class="icon-pencil"></i>Bài viết</a
+            >
+          </li>
+          <li>
+            <a href="/admin/management/files"
+              ><i class="icon-folder-alt"></i>Tệp tin</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#"><i class="icon-settings mr-1"></i>Cấu hình</a>
+        <ul>
+          <li>
+            <a href="/admin/config/profile"
+              ><i class="icon-user"></i>Tài khoản</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#"><i class="icon-support mr-1"></i>Hỗ trợ</a>
+        <ul>
+          <li>
+            <a href="https://it.humg.edu.vn/"
+              ><i class="icon-paper-plane"></i>Liên hệ</a
+            >
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!-- END: Menu-->
+    <ol class="breadcrumb bg-transparent align-self-center m-0 p-0 ml-auto">
+      <% for(let i=0; i < locals.breadcrumb.length; i++) { %>
+      <li class="breadcrumb-item">
+        <a href="<%= locals.breadcrumb[i].link %>"
+          ><%= locals.breadcrumb[i].tag %></a
+        >
+      </li>
+      <% } %>
+    </ol>
+  </div>
+</div>

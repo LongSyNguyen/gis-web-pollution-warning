@@ -1,0 +1,26 @@
+    /* Overwrite libs */
+    #example {
+        width: 100% !important;
+    }
+
+    /* Table CSS */
+    .row-hover tbody tr {
+        transition: 0.3s;
+    }
+
+    .row-hover tbody tr:hover {
+        opacity: 1;
+        background-color: #1e3d73;
+        color: white;
+    }
+
+    .table-edit-btn,
+    .table-delete-btn {
+        padding: 3px;
+        display: block;
+        font-size: 16px;
+    }
+
+    .table-delete-btn {
+        margin-left: 5px;
+    }

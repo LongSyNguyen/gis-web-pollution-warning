@@ -49,8 +49,8 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}/admin/dashboard/home`);
 });
 // AUTO UPDATE DATA
-cron.schedule('12  * * * *', () => {
-  console.log('running 12 hours');
+cron.schedule('6  * * * *', () => {
+  console.log('Update data Open Weather API'+Date.now());
   getWeather()
 },{
   scheduled:true,

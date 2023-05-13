@@ -1,0 +1,57 @@
+const mongoose = require('mongoose');
+
+const apiWeatherSchema = new mongoose.Schema({
+    latitude:{
+        type:Number,
+        required:true,
+    },
+    longitude:{
+        type:Number,
+        required:true,
+    },
+    main:{
+        aqi:{
+            type:Number,
+            required:true,
+        }
+    },
+    components:{
+        co:{
+            type:Number,
+            required:true,
+        },
+        no:{
+            type:Number,
+            required:true,
+        },
+        no2:{
+            type:Number,
+            required:true,
+        },
+        o3:{
+            type:Number,
+            required:true,
+        },
+        so2:{
+            type:Number,
+            required:true,
+        },
+        pm2_5:{
+            type:Number,
+            required:true,
+        },
+        pm10:{
+            type:Number,
+            required:true,
+        },
+        nh3:{
+            type:Number,
+            required:true,
+        }
+    },
+    dt:{
+        type:Date,
+        required:Date.now(),
+    }
+})
+module.exports = mongoose.model('apiweather', apiWeatherSchema);

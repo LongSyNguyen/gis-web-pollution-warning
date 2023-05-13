@@ -16,7 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // PORT
-dotenv.config({ path: "config.env" });
+dotenv.config({ path: "/etc/secrets/config.env" });
 
 // MONGODB CONNECTION
 connectDB();

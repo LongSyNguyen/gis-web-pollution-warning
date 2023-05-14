@@ -51,7 +51,7 @@ app.listen(PORT, () => {
 
 // AUTO UPDATE DATA FROM OPEN WEATHER MAP
 job = cron.schedule(
-  "00 17 * * *",
+  "11 17 * * *",
   () => {
     console.log("Update Code" + Date.now());
     getWeather();

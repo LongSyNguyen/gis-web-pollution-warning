@@ -36,7 +36,7 @@ class Aqi {
       },
       c_high: {
         o3: 54,
-        pm2_5: 12,
+        pm2_5: 12.0,
         pm10: 54,
         co: 4.4,
         tsp: 15.4,
@@ -102,7 +102,7 @@ class Aqi {
         },
         c_high: {
           o3: 105,
-          pm2_5: 105.4,
+          pm2_5: 150.4,
           pm10: 354,
           co: 15.4,
           tsp: 150.4,
@@ -233,37 +233,53 @@ class Aqi {
 
     if (type === "pm2_5") {
       value = value.toFixed(1);
+      // console.log(value);
       if (value >= level_1_c_low.pm2_5 && value <= level_1_c_high.pm2_5) {
         aqi =
           ((level_1_i_high - level_1_i_low) /
             (level_1_c_high.pm2_5 - level_1_c_low.pm2_5)) *
             (value - level_1_c_low.pm2_5) +
           level_1_i_low;
-      } else if (value >= level_2_c_low.pm2_5 && value <= level_2_c_high.pm2_5) {
+      } else if (
+        value >= level_2_c_low.pm2_5 &&
+        value <= level_2_c_high.pm2_5
+      ) {
         aqi =
           ((level_2_i_high - level_2_i_low) /
             (level_2_c_high.pm2_5 - level_2_c_low.pm2_5)) *
             (value - level_2_c_low.pm2_5) +
           level_2_i_low;
-      } else if (value >= level_3_c_low.pm2_5 && value <= level_3_c_high.pm2_5) {
+      } else if (
+        value >= level_3_c_low.pm2_5 &&
+        value <= level_3_c_high.pm2_5
+      ) {
         aqi =
           ((level_3_i_high - level_3_i_low) /
             (level_3_c_high.pm2_5 - level_3_c_low.pm2_5)) *
             (value - level_3_c_low.pm2_5) +
           level_3_i_low;
-      } else if (value >= level_4_c_low.pm2_5 && value <= level_4_c_high.pm2_5) {
+      } else if (
+        value >= level_4_c_low.pm2_5 &&
+        value <= level_4_c_high.pm2_5
+      ) {
         aqi =
           ((level_4_i_high - level_4_i_low) /
             (level_4_c_high.pm2_5 - level_4_c_low.pm2_5)) *
             (value - level_4_c_low.pm2_5) +
           level_4_i_low;
-      } else if (value >= level_5_c_low.pm2_5 && value <= level_5_c_high.pm2_5) {
+      } else if (
+        value >= level_5_c_low.pm2_5 &&
+        value <= level_5_c_high.pm2_5
+      ) {
         aqi =
           ((level_5_i_high - level_5_i_low) /
             (level_5_c_high.pm2_5 - level_5_c_low.pm2_5)) *
             (value - level_5_c_low.pm2_5) +
           level_5_i_low;
-      } else if (value >= level_6_c_low.pm2_5 && value <= level_6_c_high.pm2_5) {
+      } else if (
+        value >= level_6_c_low.pm2_5 &&
+        value <= level_6_c_high.pm2_5
+      ) {
         aqi =
           ((level_6_i_high - level_6_i_low) /
             (level_6_c_high.pm2_5 - level_6_c_low.pm2_5)) *

@@ -14,7 +14,7 @@ const DISTRICTS = [
   { name: "Hai Bà Trưng", lat: 21.00591, lon: 105.85748 },
   { name: "Hoài Đức", lat: 21.06271, lon: 105.73238 },
   { name: "Hoàn Kiếm", lat: 21.02839, lon: 105.85218 },
-  // { name: "Hoàng Mai", lat: 20.97483, lon: 105.85401 },
+  { name: "Hoàng Mai", lat: 20.97483, lon: 105.85401 },
   { name: "Long Biên", lat: 21.03737, lon: 105.89182 },
   { name: "Mê Linh", lat: 21.18306, lon: 105.72182 },
   { name: "Mỹ Đức", lat: 20.70448, lon: 105.78413 },
@@ -27,9 +27,9 @@ const DISTRICTS = [
   { name: "Tây Hồ", lat: 21.08091, lon: 105.81809 },
   { name: "Thạch Thất", lat: 21.08031, lon: 105.54601 },
   { name: "Thanh Oai", lat: 20.95854, lon: 105.7551 },
-  // { name: "Thanh Trì", lat: 20.92543, lon: 105.87266 },
-  // { name: "Thanh Xuân", lat: 20.99347, lon: 105.8143 },
-  // { name: "Thường Tín", lat: 20.87074, lon: 105.86057 },
+  { name: "Thanh Trì", lat: 20.92543, lon: 105.87266 },
+  { name: "Thanh Xuân", lat: 20.99347, lon: 105.8143 },
+  { name: "Thường Tín", lat: 20.87074, lon: 105.86057 },
   { name: "Ứng Hòa", lat: 20.72076, lon: 105.78011 },
 ];
 

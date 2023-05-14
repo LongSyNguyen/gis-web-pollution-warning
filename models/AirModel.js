@@ -22,11 +22,7 @@ const airQualitySchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    default: function () {
-      const now = new Date();
-      date = now.setUTCHours(date.getUTCHours() + 7)
-      return date.toISOString();
-    },
+    default: Date.now(),
   },
   tsp: {
     type: Number,

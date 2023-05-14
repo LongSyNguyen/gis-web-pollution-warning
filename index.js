@@ -50,15 +50,10 @@ app.listen(PORT, () => {
 });
 
 // AUTO UPDATE DATA FROM OPEN WEATHER MAP
-job = cron.schedule(
+cron.schedule(
   "* * * * *",
   () => {
-    date = new Date()
-    date.setUTCHours(date.getUTCHours() + 0);
-
-      // Lấy ra thời gian hiện tại theo giờ Việt Nam
-    const vietnamTime = date.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' })
-    console.log("Update Code " + vietnamTime)
+    console.log("running 12 hours");
     getWeather();
   },
   {
@@ -66,4 +61,3 @@ job = cron.schedule(
     timezone: "Asia/Ho_Chi_Minh",
   }
 );
-job.start()

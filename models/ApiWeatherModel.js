@@ -20,8 +20,7 @@ const apiWeatherSchema = new mongoose.Schema({
     type: String,
     default: function () {
       const now = new Date();
-      date = now.setUTCHours(now.getUTCHours() + 7)
-      return date.toISOString();
+      return now.toISOString();
     },
   },
   o3: {

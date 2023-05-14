@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const airController = require("../controllers/APIcontroller/air");
-const recordCleanup = require("../middlewares/recordCleanup");
+const deleteDuplicatates = require("../middlewares/deleteDuplicatates");
 
 const initAPIRoute = (app) => {
   /**
@@ -11,19 +11,28 @@ const initAPIRoute = (app) => {
   // router.post("/logout", verifyToken, authController.logOut);
 
   /**
-   * @description AIR ROUTES
+   * @description AIR STATIONS ROUTES
    */
-  router.post("/airs", airController.addAirInfo);
-  router.post("/airs/bulk",airController.addManyAirInfo);
-  router.get("/airs", airController.getAllAirInfor);
-  router.get("/airs/:id", airController.getAirInforById);
-  router.put("/airs/:id", airController.updateAirInforById);
-  router.delete("/airs/:id", airController.deleteAirInforById);
+  router.post("/stations/airs", airController.addAirInfo);
+  router.post("/stations/airs/bulk", airController.addManyAirInfo);
+  router.get("/stations/airs", airController.getAllAirInfor);
+  router.get("/stations/airs/:id", airController.getAirInforById);
+  router.put("/stations/airs/:id", airController.updateAirInforById);
+  router.delete("/stations/airs/:id", airController.deleteAirInforById);
 
+  /**
+   * @description AIR OPEN WEATHER ROUTES
+   */
+  router.get("/open-sources/openweathermap/airs", airController.getAllAirInfor);
   /**
    * @description CLEAN TEMP DATA
    */
-  router.delete("/delete-temps/collection/air", recordCleanup.airCollection);
+  router.delete(
+    "/delete-duplicates/collection/air",
+    deleteDuplicatates.airCollection
+  );
+
+  router.post("/test", airController.testAqi);
 
   return app.use("/api/v1", router);
 };

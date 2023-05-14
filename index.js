@@ -7,16 +7,16 @@ const morgan = require('morgan');
 const bodyparser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
-const cron = require('node-cron');
+const cron = require("node-cron");
 
 // MODULES
 const connectDB = require("./configs/database");
 const initWebRoute = require("./routes/web");
 const initAPIRoute = require("./routes/api");
+const getWeather = require("./helpers/getWeather");
 const app = express();
 const PORT = process.env.PORT || 8080;
-//
-const getWeather = require("./middlewares/getWeather");
+
 // PORT
 dotenv.config({ path: "config.env" });
 
@@ -46,13 +46,18 @@ app.get("*", (req, res) => {
 
 // SERVER RUNNING
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}/admin/dashboard/home`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
-// AUTO UPDATE DATA
-cron.schedule('6  * * * *', () => {
-  console.log('Update data Open Weather API'+Date.now());
-  getWeather()
-},{
-  scheduled:true,
-  timezone:"Asia/Ho_Chi_Minh"
-});
+
+// AUTO UPDATE DATA FROM OPEN WEATHER MAP
+cron.schedule(
+  "12 * * * *",
+  () => {
+    console.log("running 12 hours");
+    getWeather();
+  },
+  {
+    scheduled: true,
+    timezone: "Asia/Ho_Chi_Minh",
+  }
+);

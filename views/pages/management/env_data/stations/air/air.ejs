@@ -7,17 +7,18 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="sub-datatable" class="display table dataTable table-striped table-bordered editable-table layout-info">
-                        <div class="row d-flex justify-content-around align-items-center">
-                            <div class="col-md-1">
+                        <div class="row d-flex justify-content-around align-items-center mb-3">
+                            <div class="mb-3">
                                 <select id="table-sheet-select" class="form-control">
                                 </select>
                             </div>
-                            <button id="sendData">Lưu dữ liệu</button>
-                            <button>Thoát</button>
+                            <button id="sendData" class="btn btn-success rounded-btn btn-sm mb-3">Lưu dữ liệu</button>
+                            <button id="cancelSendData" class="btn btn-secondary rounded-btn btn-sm mb-3">Thoát</button>
                         </div>
                         <thead>
                             <tr>
                                 <th>Địa chỉ</th>
+                                <th>Tỉnh</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
                                 <th>Ngày giờ</th>
@@ -45,13 +46,17 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Id</th>
-                                <th>Địa chỉ</th>
+                                <th class="width-200px">Địa chỉ</th>
+                                <th>Tỉnh</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
                                 <th>Ngày giờ</th>
                                 <th>TSP</th>
                                 <th>SO2</th>
                                 <th>NO2</th>
+                                <th>TSP AQI</th>
+                                <th>SO2 AQI</th>
+                                <th>NO2 AQI</th>
                                 <th>Hành động</a></th>
                             </tr>
                         </thead>
@@ -59,13 +64,17 @@
                             <tr>
                                 <th>STT</th>
                                 <th>Id</th>
-                                <th>Địa chỉ</th>
+                                <th class="width-200px">Địa chỉ</th>
+                                <th>Tỉnh</th>
                                 <th>Latitude</th>
                                 <th>Longitude</th>
                                 <th>Ngày giờ</th>
                                 <th>TSP</th>
                                 <th>SO2</th>
                                 <th>NO2</th>
+                                <th>TSP AQI</th>
+                                <th>SO2 AQI</th>
+                                <th>NO2 AQI</th>
                                 <th>Hành động</th>
                             </tr>
                         </tfoot>
@@ -92,25 +101,33 @@
                 <!-- type number + step any = float type-->
                 <form id="form-action-modal">
                     <div class="form-row">
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="AdressValid">Địa chỉ</label>
                             <input type="text" class="form-control" name="AdressValid" id="AdressValid"
                                 placeholder="Địa chỉ lấy mẫu" spellcheck="false" required>
                             <div class="invalid-feedback">Không hợp lệ</div>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-6 mb-3">
+                            <label for="StateValid">Tỉnh</label>
+                            <input type="text" class="form-control" name="StateValid" id="StateValid" placeholder="Địa chỉ lấy mẫu"
+                                spellcheck="false" required>
+                            <div class="invalid-feedback">Không hợp lệ</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
                             <label for="LatitudeValid">Toạ độ Latitude</label>
                             <input type="number" step="any" class="form-control" id="LatitudeValid"
                                 placeholder="Toạ độ Lat" required>
                             <div class="invalid-feedback">Không hợp lệ</div>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="LongitudeValid">Toạ độ Longitude</label>
                             <input type="number" step="any" class="form-control" id="LongitudeValid"
                                 placeholder="Toạ độ Long" required>
                             <div class="invalid-feedback">Không hợp lệ</div>
                         </div>
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="DateValid">Ngày giờ lấy mẫu</label>
                             <input type="datetime-local" class="form-control" id="DateValid">
                             <div class="invalid-feedback">Không hợp lệ</div>

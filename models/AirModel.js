@@ -3,11 +3,11 @@ const Aqi = require("../helpers/aqi_calculator");
 
 const airQualitySchema = new mongoose.Schema({
   location: {
-    city:{
-      type: String,
-      default: "Hà Nam"
-    },
     address: {
+      type: String,
+      required: true,
+    },
+    state: {
       type: String,
       required: true,
     },
@@ -22,6 +22,10 @@ const airQualitySchema = new mongoose.Schema({
   },
   date: {
     type: String,
+    default: function () {
+      const now = new Date();
+      return now.toISOString();
+    },
   },
   tsp: {
     type: Number,

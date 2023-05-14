@@ -8,7 +8,7 @@
     const isoDate = new Date(`${year}-${month}-${day}`);
     return isoDate;
   }
-
+  // Convert
   let formatDate = (date) => {
     const newDate = new Date(date);
     const formattedDate = newDate.toISOString().substring(0, 16);
@@ -24,13 +24,6 @@
       {
         className: "insert-btn",
         text: " <i class='fas fa-plus'></i> Thêm",
-      },
-      {
-        extend: "collection",
-        text: " <i class='fas fa-regular fa-eye-slash'></i> Ẩn/Hiện cột",
-        buttons: [
-          // các checkbox ở
-        ],
       },
       {
         extend: "collection",
@@ -58,7 +51,7 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], // chỉ xuất các cột 0, 1, 3
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -68,7 +61,7 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], // chỉ xuất các cột 0, 1, 3
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -78,7 +71,7 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], // chỉ xuất các cột 0, 1, 3
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -88,7 +81,7 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], // chỉ xuất các cột 0, 1, 3
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -96,7 +89,6 @@
       },
     ],
     responsive: true,
-    autoWidth: false,
     processing: true,
     serverSide: true,
     searching: true,
@@ -133,12 +125,16 @@
       { data: "index", name: "STT" },
       { data: "_id", name: "Id" },
       { data: "address", name: "Địa chỉ" },
+      { data: "state", name: "Tỉnh" },
       { data: "latitude", name: "Latitude" },
       { data: "longitude", name: "Longitude" },
       { data: "date", name: "Ngày giờ" },
       { data: "tsp", name: "TSP" },
       { data: "so2", name: "SO2" },
       { data: "no2", name: "NO2" },
+      { data: "aqi_tsp", name: "TSP AQI" },
+      { data: "aqi_so2", name: "SO2 AQI" },
+      { data: "aqi_no2", name: "NO2 AQI" },
       {
         // Thêm cột "Action"
         orderable: false,
@@ -175,6 +171,7 @@
   var table_action_type = $("#actionType");
 
   var address_valid = $("#AdressValid");
+  var state_valid = $("#StateValid");
   var latitude_valid = $("#LatitudeValid");
   var longitude_valid = $("#LongitudeValid");
   var date_valid = $("#DateValid");
@@ -197,7 +194,7 @@
 
 
     $.ajax({
-      url: "/api/v1/airs/" + targetId,
+      url: "/api/v1/stations/airs/" + targetId,
       type: "GET",
       dataType: "json",
       success: function (res) {
@@ -207,6 +204,7 @@
         table_save_change.val("Cập nhật");
         // lấy dữ liệu để truyền vào form
         address_valid.val(res.location.address);
+        state_valid.val(res.location.state);
         latitude_valid.val(res.location.latitude);
         longitude_valid.val(res.location.longitude);
         date_valid.val(formatDate(res.date));
@@ -224,12 +222,10 @@
   // Form Handler
   table_action_modal.on("submit", "#form-action-modal", function (event) {
     event.preventDefault();
-    table_save_change.attr("disabled", "disabled");
-
-    console.log(date_valid.val());
     let actionData = {
       location: {
         address: address_valid.val(),
+        state: state_valid.val(),
         latitude: latitude_valid.val(),
         longitude: longitude_valid.val(),
       },
@@ -244,7 +240,6 @@
       // truyền thêm action id vào actionData
       actionData._id = table_action_id.val();
     }
-
     $.ajax({
       url: "/admin/management/env-data/stations/air/datatables",
       type: "POST",
@@ -254,7 +249,6 @@
         event.preventDefault();
         form_action_modal[0].reset();
         table_action_modal.modal("toggle");
-        table_save_change.attr("disabled", false);
         if (actionType == "insertData") {
           Swal.fire(
             "Thêm thành công!",
@@ -271,6 +265,7 @@
         dataTable.ajax.reload();
       },
       error: function (xhr, status, error) {
+
         Swal.fire({
           icon: "error",
           title: status,
@@ -463,6 +458,10 @@
     subDataTable.rows.add(datarows).draw();
   }
 
+  $("#cancelSendData").click(function(e) {
+    $(".sub-datatable").hide();
+  });
+
   /**
    * @description INSERT DATA FROM SUBDATA TABLE
    */
@@ -474,25 +473,27 @@
       return {
         location: {
           address: row[0],
-          latitude: row[1],
-          longitude: row[2],
+          state: row[1],
+          latitude: row[2],
+          longitude: row[3],
         },
-        date: convertStringToDate(row[3]),
-        tsp: row[4],
-        so2: row[5],
-        no2: row[6],
+        date: convertStringToDate(row[4]),
+        tsp: row[5],
+        so2: row[6],
+        no2: row[7],
       };
     });
 
     $.ajax({
-      url: "/api/v1/airs/bulk",
+      url: "/api/v1/stations/airs/bulk",
       type: "POST",
       data: JSON.stringify(data),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function (response) {
+      // Clean up duplicate records
       $.ajax({
-        url: "/api/v1/delete-temps/collection/air",
+        url: "/api/v1/delete-duplicates/collection/air",
         type: "DELETE",
         success: function (response) {
           Swal.fire(

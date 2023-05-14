@@ -152,65 +152,6 @@
     /*==============================================================
      Sidebar Settings 
      ============================================================= */
-
-    var settinghtml = `<div id="settings" class="">
-            <a href="#" id="settingbutton" class="setting"> 
-                <h5 class="mb-0"><i class="icon-settings"></i></h5>
-            </a>
-            <div class="sidbarchat p-3">
-                <h5 class="mb-0">GIAO DIỆN</h5>
-                <hr/>
-                <h6>MÀU SẮC</h6>
-                <ul class="list-inline float-left claerfix">
-                    <li class="color-box m-2 list-inline-item float-left color1" data-color="#1e3d73"></li>
-                    <li class="color-box m-2 list-inline-item float-left color2" data-color="#0bb2d4"></li>                    
-                    <li class="color-box m-2 list-inline-item float-left color3" data-color="#17b3a3"></li>
-                    <li class="color-box m-2 list-inline-item float-left color4" data-color="#eb6709"></li>
-                    <li class="color-box m-2 list-inline-item float-left color5" data-color="#76c335"></li>
-                    <li class="color-box m-2 list-inline-item float-left color6" data-color="#3e8ef7"></li>
-                    <li class="float-left list-inline-item"><input type="color" class="cursor-pointer color m-2"  value="#1e3d73"></li>
-                </ul>
-                <hr class="float-left w-100"/>
-               
-                <h6>CHỦ ĐỀ</h6>                              
-                <label class="chkbox">Light 
-                    <input name="style" value="light" class="style" type="radio" >
-                    <span class="checkmark"></span>
-                </label> <br/>
-                <label class="chkbox mt-2">Dark 
-                    <input name="style" value="dark" class="style" type="radio" >
-                    <span class="checkmark"></span>
-                </label> <br/>
-                <label class="chkbox mt-2">Semi Dark 
-                    <input name="style" value="semi-dark" class="style" type="radio" >
-                    <span class="checkmark"></span>
-                </label> <br/>
-                <label class="chkbox mt-2">Gradient
-                    <input name="style" value="gradient" class="style" type="radio" >
-                    <span class="checkmark"></span>
-                </label> 
-                <br/><br/>
-                <hr class="float-left w-100"/>
-                <h6>MENU</h6>
-                <label class="chkbox horizontal mb-2">Hợp nhất 
-                    <input name="horizontal" value="horizontal-menu" class="horizontallayout" type="checkbox" >
-                    <span class="checkmark"></span>
-                </label><br/>
-                <label class="chkbox compact">Gọn gàng 
-                    <input name="compact" value="compact" class="sidebar" type="checkbox" >
-                    <span class="checkmark"></span>
-                </label>
-            </div>
-        </div>`;
-
-    $("body").append(settinghtml);
-
-    $('.setting').on('click', function () {
-        $('#settings').toggleClass('active');
-        return false;
-    });
-
-
     var uri = window.location.href.toString();
     if (uri.indexOf("?") > 0) {
         delete_cookie('menulayout');
@@ -222,63 +163,10 @@
 
 
 ////////////////////////////// TEMPLATE Color /////////////////////////
-    $(".gradient-img-block").on('click', function () {
-        $(".gradient-img-block").removeClass('active');
-        $(this).addClass('active');
-        var imageUrl = "dist/images/" + $(this).data('img');
-        $('.gbackground, .gradient, .gradient #header-fix, .gradient #header-fix .logo-bar,.gradient .sidebar, .gradient .sidebar .dropdown-menu, .gradient #settings .sidbarchat, .gradient.horizontal-menu #header-fix, .gradient.horizontal-menu .sidebar .sidebar-menu > li.active, .gradient.horizontal-menu .sidebar .sidebar-menu > li:hover, .gradient.horizontal-menu .sidebar .sidebar-menu > li ul, .gradient.compact-menu .sidebar, .gradient .dropdown-menu').css('background', "url(" + imageUrl + ")");
-        $('body').css("--primarycolor", $(this).data('primary'));
-        createCookie('cookiesprimarycolor', $(this).data('primary'));
-        createCookie('gradientimg', imageUrl);
-        location.reload();
-    });
-    $(".color-box").on('click', function () {
-        $("input.color").val($(this).data('color'));
-        $('body').css("--primarycolor", $("input.color").val());
-        $('.dark').css("--primarycolor", $("input.color").val());
-        $('.semi-dark').css("--primarycolor", $("input.color").val());
-        $('.semi-dark-alt').css("--primarycolor", $("input.color").val());
-        createCookie('cookiesprimarycolor', $("input.color").val());
-    });
-    $("input.color").on('change', function () {
-        $('body').css("--primarycolor", $("input.color").val());
-        $('.dark').css("--primarycolor", $("input.color").val());
-        $('.semi-dark').css("--primarycolor", $("input.color").val());
-        $('.semi-dark-alt').css("--primarycolor", $("input.color").val());
-        createCookie('cookiesprimarycolor', $(this).val());
-    });
-
-    var cookiesprimarycolor = getCookie("cookiesprimarycolor");
-    if (cookiesprimarycolor != null && cookiesprimarycolor != '') {
-        $("input.color").val(cookiesprimarycolor);
-        $('body').css("--primarycolor", cookiesprimarycolor);
-        $('.dark').css("--primarycolor", cookiesprimarycolor);
-        $('.semi-dark').css("--primarycolor", cookiesprimarycolor);
-        $('.semi-dark-alt').css("--primarycolor", cookiesprimarycolor);
-    }
 
 
 ///////////////////////////////// Sidebar Color //////////////////////////////
-    $("input.sidebarcolor").on('change', function () {
-        $('.sidebar').css("background", $("input.sidebarcolor").val());
-        createCookie('cookiessidebarcolor', $("input.sidebarcolor").val());
-    });
-    var cookiessidebarcolor = getUrlParameter('cookiessidebarcolor');
-    if (cookiessidebarcolor != null && cookiessidebarcolor != '')
-    {
-        createCookie('cookiessidebarcolor', cookiessidebarcolor);
-    }
-    var themecolor = getCookie("themecolor");
-    if (themecolor == 'semi-dark')
-    {
-        var cookiessidebarcolor = getCookie("cookiessidebarcolor");
-        if (cookiessidebarcolor != null && cookiessidebarcolor != '') {
-            $("input.sidebarcolor").val(cookiessidebarcolor);
-            $('.sidebar').css("background", cookiessidebarcolor);
-            $('#header-fix .logo-bar').css("background", cookiessidebarcolor);
 
-        }
-    }
 
 //////////////////////////// TEMPLATE Style //////////////////////////////////
 

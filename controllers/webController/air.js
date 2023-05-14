@@ -1,5 +1,6 @@
 const Air = require("../../models/AirModel");
 const Aqi = require("../../helpers/aqi_calculator");
+const checkDataType = require("../../helpers/check_dataType");
 
 const airRender = {
   // GET ENVIRONMENT DATA MANAGEMENT PAGE
@@ -51,17 +52,31 @@ const airRender = {
         let query = {};
         if (req.body.search.value) {
           const searchValue = req.body.search.value;
-          
-          query.$or = [
-            { "location.address": { $regex: searchValue, $options: "i" } },
-            { "location.latitude": searchValue, expectedType: "Double" },
-            { "location.longitude": searchValue, expectedType: "Double" },
-            { date: { $regex: searchValue, $options: "i" } },
-            { tsp: searchValue, expectedType: "Double" },
-            { so2: searchValue, expectedType: "Double" },
-            { no2: searchValue, expectedType: "Double" },
-            { aqi: searchValue, expectedType: "Double" },
-          ];
+          if (checkDataType.isNumber(searchValue)) {
+            query.$or = [
+              { "location.address": { $regex: searchValue, $options: "i" } },
+              { "location.state": { $regex: searchValue, $options: "i" } },
+              { "location.latitude": searchValue, expectedType: "Double" },
+              { "location.longitude": searchValue, expectedType: "Double" },
+              { date: { $regex: searchValue, $options: "i" } },
+              { tsp: searchValue, expectedType: "Double" },
+              { so2: searchValue, expectedType: "Double" },
+              { no2: searchValue, expectedType: "Double" },
+              { aqi: searchValue, expectedType: "Double" },
+            ];
+          } else {
+            if (checkDataType.isValidObjectId(searchValue)) {
+              query.$or = [{ _id: searchValue }];
+            } else {
+              query.$or = [
+                { "location.state": { $regex: searchValue, $options: "i" } },
+                {
+                  "location.address": { $regex: searchValue, $options: "i" },
+                },
+                { date: { $regex: searchValue, $options: "i" } },
+              ];
+            }
+          }
         }
 
         const sortQuery = {};
@@ -87,17 +102,21 @@ const airRender = {
                 console.error(err);
                 return res.status(500).json({ error: err });
               }
-              let i = 0
+              let i = 0;
               const formattedData = data.map((item) => ({
                 index: (i += 1),
                 _id: item._id,
                 address: item.location.address,
+                state: item.location.state,
                 latitude: item.location.latitude,
                 longitude: item.location.longitude,
                 date: new Date(item.date),
                 tsp: item.tsp,
                 so2: item.so2,
                 no2: item.no2,
+                aqi_tsp: item.aqi.tsp,
+                aqi_so2: item.aqi.so2,
+                aqi_no2: item.aqi.no2,
               }));
               res.status(200).json({
                 draw,
@@ -111,7 +130,6 @@ const airRender = {
 
       case "insertData":
         try {
-
           const newAir = new Air(req.body.actionData);
           const savedAir = await newAir.save();
           res.status(200).json(savedAir);
@@ -137,12 +155,14 @@ const airRender = {
               type: "no2",
             }),
           };
+
           const updateValue = { ...req.body.actionData, aqi: aqi }; // create the new update value
           const air = await Air.findById(id); // get the old record
           await air.updateOne({ $set: updateValue }); // $set make unique value
           res.status(200).json({ ...updateValue, _id: id }); // return the update value
         } catch (error) {
-          res.status(500).json({ message: error });
+          // res.status(500).json({ message: error });
+          res.status(500).json("cac");
         }
         break;
 
@@ -155,8 +175,6 @@ const airRender = {
           res.status(500).json(err);
         }
 
-      // SUB-DATATABLE
-      // case ""
       default:
         break;
     }

@@ -24,3 +24,7 @@
     .table-delete-btn {
         margin-left: 5px;
     }
+
+    .width-200px {
+        min-width: 200px !important;
+    }

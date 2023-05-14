@@ -79,10 +79,7 @@ const PAGE_SCRIPT_REQUIRED = '../pages/' + locals.page_required.script_path;
   <!-- START: APP JS-->
   <script src="/js/ux-ui_libs/app.js"></script>
   <!-- END: APP JS-->
-
-  <!-- CUSTOMIZE -->
-  <script src="/js/ux-ui_libs/sidebar-script.js"></script>
-
+  
   <% if (locals.page_required.script_path) { %>
     <%- include(PAGE_SCRIPT_REQUIRED); %>
   <% } %>

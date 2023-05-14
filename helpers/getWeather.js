@@ -53,12 +53,14 @@ const getWeather = async () => {
           latitude: coord.lat,
           longitude: coord.lon,
         },
-        date: function(){
-          new Date(list[0].dt * 1000)
-          date.setUTCHours(date.getUTCHours() + 7);
-
-          // Lấy ra thời gian hiện tại theo giờ Việt Nam
-          return date.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' })
+        date: {
+          default: function(){
+            new Date(list[0].dt * 1000)
+            date.setUTCHours(date.getUTCHours() + 7);
+  
+            // Lấy ra thời gian hiện tại theo giờ Việt Nam
+            return date.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' })
+          },
         },
         co: list[0].components.no,
         no2: list[0].components.no2,

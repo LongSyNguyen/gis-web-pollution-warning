@@ -46,18 +46,18 @@ const getWeather = async () => {
       });
       const { coord, list } = response.data;
       // Format data
-      const lat = coord.lat;
-      const long = coord.lon;
-      const addressInfo = await getAddress({
-        lat,
-        long,
-        full_address: true,
-        city_district: true,
-      });
+      // const lat = coord.lat;
+      // const long = coord.lon;
+      // const addressInfo = await getAddress({
+      //   lat,
+      //   long,
+      //   full_address: true,
+      //   city_district: true,
+      // });
 
       const airPollutionData = {
         location: {
-          district_city: addressInfo.city_district,
+          district_city: district.name,
           latitude: coord.lat,
           longitude: coord.lon,
         },
@@ -69,7 +69,8 @@ const getWeather = async () => {
         pm2_5: list[0].components.pm2_5,
         pm10: list[0].components.pm10,
       };
-      await ApiWeatherModel.insertMany(airPollutionData);
+      // await ApiWeatherModel.insertMany(airPollutionData);
+      console.log(airPollutionData);
     } catch (error) {
       console.log(error.message);
     }

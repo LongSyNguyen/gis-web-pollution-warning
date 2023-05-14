@@ -50,10 +50,10 @@ app.listen(PORT, () => {
 });
 
 // AUTO UPDATE DATA FROM OPEN WEATHER MAP
-cron.schedule(
-  "0 */12 * * *",
+job = cron.schedule(
+  "00 17 * * *",
   () => {
-    console.log("running 12 hours");
+    console.log("Update Code" + Date.now());
     getWeather();
   },
   {
@@ -61,3 +61,4 @@ cron.schedule(
     timezone: "Asia/Ho_Chi_Minh",
   }
 );
+job.start()

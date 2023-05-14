@@ -45,15 +45,7 @@ const getWeather = async () => {
         },
       });
       const { coord, list } = response.data;
-      // Format data
-      // const lat = coord.lat;
-      // const long = coord.lon;
-      // const addressInfo = await getAddress({
-      //   lat,
-      //   long,
-      //   full_address: true,
-      //   city_district: true,
-      // });
+
 
       const airPollutionData = {
         location: {
@@ -61,7 +53,13 @@ const getWeather = async () => {
           latitude: coord.lat,
           longitude: coord.lon,
         },
-        date: new Date(list[0].dt * 1000),
+        date: function(){
+          new Date(list[0].dt * 1000)
+          date.setUTCHours(date.getUTCHours() + 7);
+
+          // Lấy ra thời gian hiện tại theo giờ Việt Nam
+          return date.toLocaleString('en-US', { timeZone: 'Asia/Ho_Chi_Minh' })
+        },
         co: list[0].components.no,
         no2: list[0].components.no2,
         o3: list[0].components.o3,

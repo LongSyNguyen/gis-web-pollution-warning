@@ -18,10 +18,7 @@ const apiWeatherSchema = new mongoose.Schema({
   },
   date: {
     type: String,
-    default: function () {
-      const now = new Date();
-      return now.toISOString();
-    },
+    default: Date.now()
   },
   o3: {
     type: Number,

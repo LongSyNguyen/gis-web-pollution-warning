@@ -25,6 +25,12 @@
         margin-left: 5px;
     }
 
+    .table-only-delete-btn {
+        padding: 3px;
+        display: block;
+        font-size: 16px;
+    }
+
     .width-200px {
         min-width: 200px !important;
     }

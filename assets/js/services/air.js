@@ -132,9 +132,9 @@
       { data: "tsp", name: "TSP" },
       { data: "so2", name: "SO2" },
       { data: "no2", name: "NO2" },
-      { data: "aqi_tsp", name: "TSP AQI" },
-      { data: "aqi_so2", name: "SO2 AQI" },
-      { data: "aqi_no2", name: "NO2 AQI" },
+      { data: "aqi_tsp", name: "AQI-TSP" },
+      { data: "aqi_so2", name: "AQI-SO2" },
+      { data: "aqi_no2", name: "AQI-NO2" },
       {
         // Thêm cột "Action"
         orderable: false,
@@ -207,7 +207,7 @@
         state_valid.val(res.location.state);
         latitude_valid.val(res.location.latitude);
         longitude_valid.val(res.location.longitude);
-        date_valid.val(formatDate(res.date));
+        date_valid.val(formatDate(res.date.string_type));
         tsp_valid.val(res.tsp);
         so2_valid.val(res.so2);
         no2_valid.val(res.no2);
@@ -229,10 +229,13 @@
         latitude: latitude_valid.val(),
         longitude: longitude_valid.val(),
       },
-      date: date_valid.val(),
+      date: {
+        string_type: date_valid.val(),
+        date_type: date_valid.val()
+      },
       tsp: tsp_valid.val(),
       so2: so2_valid.val(),
-      no2: no2_valid.val(),
+      no2: no2_valid.val()
     };
 
     // Nếu có id, nghĩa là thực hiện tính năng update
@@ -477,7 +480,10 @@
           latitude: row[2],
           longitude: row[3],
         },
-        date: convertStringToDate(row[4]),
+        date: {
+          string_type: convertStringToDate(row[4]),
+          date_type: convertStringToDate(row[4])
+        },
         tsp: row[5],
         so2: row[6],
         no2: row[7],

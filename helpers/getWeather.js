@@ -1,6 +1,5 @@
 const axios = require("axios");
 const ApiWeatherModel = require("../models/ApiWeatherModel");
-const getAddress = require("./get_address");
 
 const DISTRICTS = [
   { name: "Ba Đình", lat: 21.03468, lon: 105.81432 },
@@ -52,7 +51,10 @@ const getWeather = async () => {
           latitude: coord.lat,
           longitude: coord.lon,
         },
-        date: new Date(list[0].dt * 1000).toISOString(),
+        date: {
+          date_type: new Date(list[0].dt * 1000).toISOString(),
+          string_type: new Date(list[0].dt * 1000).toISOString()
+        },
         co: list[0].components.no,
         no2: list[0].components.no2,
         o3: list[0].components.o3,
@@ -61,7 +63,6 @@ const getWeather = async () => {
         pm10: list[0].components.pm10,
       };
       await ApiWeatherModel.insertMany(airPollutionData);
-      // console.log(airPollutionData);
     } catch (error) {
       console.log(error.message);
     }

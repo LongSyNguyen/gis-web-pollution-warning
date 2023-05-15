@@ -10,7 +10,6 @@ const deleteDuplicatates = {
               _id: {
                 longitude: "$location.longitude",
                 latitude: "$location.latitude",
-                // address: "$location.address",
                 date: "$date",
               },
               dups: {

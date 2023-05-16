@@ -51,7 +51,7 @@ app.listen(PORT, () => {
 
 // AUTO UPDATE DATA FROM OPEN WEATHER MAP
 // LONG
-cron.schedule("12 30 * * *",() => {
+cron.schedule("30 12 * * *",() => {
     console.log("UPDATE DATA FORM WEATHER API");
     getWeather();
   },
@@ -60,7 +60,7 @@ cron.schedule("12 30 * * *",() => {
     timezone: "Asia/Ho_Chi_Minh",
   }
 );
-cron.schedule("50 21 * * *",() => {
+cron.schedule("05 22 * * *",() => {
   console.log("UPDATE DATA FORM WEATHER API");
   getWeather();
   },

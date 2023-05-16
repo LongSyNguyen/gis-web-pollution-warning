@@ -51,7 +51,7 @@ app.listen(PORT, () => {
 
 // AUTO UPDATE DATA FROM OPEN WEATHER MAP
 // LONG
-cron.schedule("30 12 * * *",() => {
+cron.schedule("12 40 * * *",() => {
     console.log("UPDATE DATA FORM WEATHER API");
     getWeather();
   },

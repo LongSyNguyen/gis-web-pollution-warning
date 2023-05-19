@@ -16,10 +16,6 @@ const airRender = {
           link: "#",
         },
         {
-          tag: "Trạm quan trắc",
-          link: "#",
-        },
-        {
           tag: "Dữ liệu không khí",
           link: "/admin/management/env-data/stations/air",
         },

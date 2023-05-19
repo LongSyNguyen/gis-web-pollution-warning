@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const airController = require("../controllers/APIcontroller/air");
 const openweathermapController = require("../controllers/APIcontroller/openweathermap");
-const deleteDuplicatates = require("../middlewares/deleteDuplicatates");
+const deleteDuplicatates = require("../helpers/deleteDuplicatates");
 
 const initAPIRoute = (app) => {
   /**

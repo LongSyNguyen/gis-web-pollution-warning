@@ -1,3 +1,5 @@
+const description = "Gis Web Management";
+
 const loginRender = {
   // GET HOME PAGE
   getLoginPage: async (req, res) => {

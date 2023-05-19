@@ -12,11 +12,11 @@ const profileRender = {
       breadcrumb: [
         {
           tag: "Cấu hình",
-          link: "/admin/home",
+          link: "#",
         },
         {
           tag: "Tài khoản",
-          link: "#",
+          link: "/admin/config/profile",
         },
       ],
       title: "Admin | Tài khoản",

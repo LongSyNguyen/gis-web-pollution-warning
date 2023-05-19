@@ -103,11 +103,14 @@ const airController = {
       }
 
       if (fromdate && todate) {
+        const fromDate = new Date(req.query.fromdate);
+        const toDate = new Date(req.query.todate);
+        toDate.setHours(23, 59, 59, 999);
         filter = {
           ...filter,
           "date.date_type": {
-            $gte: new Date(fromdate),
-            $lte: new Date(todate),
+            $gte: new Date(fromDate),
+            $lte: new Date(toDate),
           },
         };
       }
@@ -252,7 +255,7 @@ const airController = {
     } catch (error) {
       res.status(500).json(err);
     }
-  },
+  }
 };
 
 module.exports = airController;

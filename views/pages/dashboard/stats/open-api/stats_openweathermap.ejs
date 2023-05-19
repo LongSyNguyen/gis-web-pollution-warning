@@ -1,0 +1,122 @@
+<!-- STATS -->
+<div class="row">
+  <div class="col-12 col-sm-6 col-xl-4 mt-3">
+    <div class="card">
+      <div class="card-body text-info border-bottom border-info border-w-5">
+        <h2 class="text-center">
+          <%= data.total_location %>
+        </h2>
+        <h6 class="text-center">Điểm lấy mẫu</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-xl-4 mt-3">
+    <div class="card">
+      <div class="card-body text-success border-bottom border-success border-w-5">
+        <h2 class="text-center">6</h2>
+        <h6 class="text-center">Loại chỉ số quan trắc</h6>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-sm-6 col-xl-4 mt-3">
+    <div class="card">
+      <div class="card-body text-warning border-bottom border-warning border-w-5">
+        <h2 class="text-center">6</h2>
+        <h6 class="text-center">Cấp độ ảnh hưởng</h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHART -->
+<div class="row">
+  <!-- Chart -->
+  <div class="col-12 col-md-12 mt-3">
+    <div class="card">
+      <div class="card-header">
+        <div class="row d-flex justify-content-center mb-1">
+          <div class="clock">
+            <span style="font-size:1rem" class="text-info">Hôm nay: </span>
+            <span id="time" style="font-size:1rem" class="text-info"></span>
+            <span id="date" style="font-size:1rem" class="text-info"></span>
+            <hr>
+          </div>
+        </div>
+        <h6 class="card-title">Lựa chọn hiển thị</h6>
+        <div class="row">
+          <div class="col-12 col-md-3 mt-3">
+            <select id="location-choices">
+              <option value="all_location_in_state" selected>Trung bình các quận của thủ đô Hà Nội</option>
+              <% for(let i=0; i < data.all_unique_locations.length; i++) { %>
+                <option
+                  value="<%= data.all_unique_locations[i].latitude %>_<%= data.all_unique_locations[i].longitude %>">
+                  <%= data.all_unique_locations[i].district_city %>
+                </option>
+                <% } %>
+            </select>
+          </div>
+          <div class="col-12 col-md-2 mt-3">
+            <select id="daterange-choices">
+              <option value="all_hour_in_current_day" selected>Dữ liệu ngày hôm nay</option>
+              <option value="all_month_in_year">Dữ liệu trong năm</option>
+              <option value="all_day_in_month">Dữ liệu trong tháng</option>
+              <option value="all_hour_in_day">Dữ liệu trong ngày</option>
+            </select>
+          </div>
+          <div class="col-12 col-md-2 mt-3">
+            <select id="year-choices">
+              <option value="<%= data.current_year %>" selected>Năm <%= data.current_year %>
+              </option>
+              <% for(let i=1; i < data.unique_years.length; i++) { %>
+                <option value="<%= data.unique_years[i] %>">
+                  Năm <%= data.unique_years[i] %>
+                </option>
+                <% } %>
+            </select>
+          </div>
+          <div class="col-12 col-md-2 mt-3">
+            <select id="month-choices">
+              <option value="1" selected>Tháng 1</option>
+              <% for(let i=2; i < 13; i++) { %>
+                <option value="<%= i %>">
+                  Tháng <%= i %>
+                </option>
+                <% } %>
+            </select>
+          </div>
+          <div class="col-12 col-md-2 mt-3">
+            <select id="day-choices">
+              <option value="1" selected>Ngày 1</option>
+              <% for(let i=2; i < 31; i++) { %>
+                <option value="<%= i %>">
+                  Ngày <%= i %>
+                </option>
+                <% } %>
+            </select>
+          </div>
+          <div class="col-12 col-md-1 mt-3">
+            <select id="measured-choices">
+              <option value="pm2_5" selected>PM 2.5</option>
+              <option value="pm10">PM10</option>
+              <option value="o3">O3</option>
+              <option value="co">CO</option>
+              <option value="so2">SO2</option>
+              <option value="no2">NO2</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row d-flex justify-content-center">
+          <span class="badge badge-color-p1">Tốt</span>
+          <span class="badge badge-color-p2">Trung bình</span>
+          <span class="badge badge-color-p3">Không lành mạnh cho người nhạy cảm</span>
+          <span class="badge badge-color-p4">Không lành mạnh</span>
+          <span class="badge badge-color-p5">Rất không lành mạnh</span>
+          <span class="badge badge-color-p6">Nguy hiểm</span>
+        </div>
+        <div id="e-basic-bar" class="height-400"></div>
+      </div>
+    </div>
+  </div>
+</div>

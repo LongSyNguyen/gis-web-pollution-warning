@@ -63,7 +63,6 @@ const getWeather = async () => {
         pm10: list[0].components.pm10,
       };
       await ApiWeatherModel.insertMany(airPollutionData);
-      // console.log(airPollutionData);
     } catch (error) {
       console.log(error.message);
     }

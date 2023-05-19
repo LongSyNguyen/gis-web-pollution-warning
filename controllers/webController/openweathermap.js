@@ -16,10 +16,6 @@ const openweathermapRender = {
           link: "#",
         },
         {
-          tag: "Nguồn mở",
-          link: "#",
-        },
-        {
           tag: "Open weather map",
           link: "/admin/management/env-data/open-api/openweathermap",
         },

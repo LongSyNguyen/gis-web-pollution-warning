@@ -1,0 +1,36 @@
+.badge-color-p1 {
+    background-color: #00e400;
+    color: black;
+}
+
+.badge-color-p2 {
+    background-color: #ff0;
+    color: black;
+}
+
+.badge-color-p3 {
+    background-color: #ff7e00;
+    color: black;
+}
+
+.badge-color-p4 {
+    background-color: #f00;
+    color: white;
+}
+
+.badge-color-p5 {
+    background-color: #8f3f97;
+    color: white;
+}
+
+.badge-color-p6 {
+    background-color: #7e0023;
+    color: white;
+}
+
+.badge {
+    padding: 4px 8px;
+    text-align: center;
+    border-radius: 0px;
+    font-weight: 700;
+}

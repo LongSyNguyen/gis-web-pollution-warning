@@ -5,10 +5,26 @@
       <li class="dropdown">
         <a href="#"><i class="icon-home mr-1"></i>Bảng điều khiển</a>
         <ul>
-          <li>
-            <a href="/admin/dashboard/home"
-              ><i class="icon-home"></i>Trang chủ</a
-            >
+          <li class="dropdown">
+            <a href="#"><i class="icon-chart"></i>Thống kê</a>
+            <ul class="sub-menu">
+              <li class="dropdown">
+                <a href="#" class="d-flex align-items-center"><i class="icon-control-pause"></i>Nguồn mở</a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="/admin/dashboard/stats/open-api/openweathermap">Open Weather Map</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="d-flex align-items-center"><i class="icon-control-pause"></i>Trạm quan trắc</a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="/admin/dashboard/stats/stations/air">Dữ liệu không khí</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>
@@ -19,6 +35,14 @@
             <a href="#"><i class="icon-globe-alt"></i>Dữ liệu môi trường</a>
             <ul class="sub-menu">
               <li class="dropdown">
+                <a href="#" class="d-flex align-items-center"><i class="icon-control-pause"></i>Nguồn mở</a>
+                <ul class="sub-menu">
+                  <li>
+                    <a href="/admin/management/env-data/open-api/openweathermap">Open Weather Map</a>
+                  </li>
+                </ul>
+              </li>
+              <li class="dropdown">
                 <a href="#" class="d-flex align-items-center"
                   ><i class="icon-control-pause"></i>Trạm quan trắc</a
                 >
@@ -26,18 +50,6 @@
                   <li>
                     <a href="/admin/management/env-data/stations/air"
                       >Dữ liệu không khí</a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="d-flex align-items-center"
-                  ><i class="icon-control-pause"></i>Nguồn mở</a
-                >
-                <ul class="sub-menu">
-                  <li>
-                    <a href="/admin/management/env-data/open-api/openweathermap"
-                      >Open Weather Map</a
                     >
                   </li>
                 </ul>

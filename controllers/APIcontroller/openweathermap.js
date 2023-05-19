@@ -29,6 +29,7 @@ const openweathermapController = {
                 day: formatDate.getDate(),
                 hour: formatDate.getHours(),
                 minute: formatDate.getMinutes(),
+                second: formatDate.getSeconds()
               },
               o3: {
                 value: item.o3,
@@ -73,7 +74,7 @@ const openweathermapController = {
   filterAirInfor: async (req, res) => {
     try {
       const { district_city, lat, long, current_date } = req.query;
-      const { fromdate, todate } = req.query;
+      const { fromdate, todate, exactdate } = req.query;
 
       var filter = {};
       if (district_city) {
@@ -92,11 +93,14 @@ const openweathermapController = {
       }
 
       if (fromdate && todate) {
+        const fromDate = new Date(req.query.fromdate);
+        const toDate = new Date(req.query.todate);
+        toDate.setHours(23, 59, 59, 999);
         filter = {
           ...filter,
           "date.date_type": {
-            $gte: new Date(fromdate),
-            $lte: new Date(todate),
+            $gte: new Date(fromDate),
+            $lte: new Date(toDate),
           },
         };
       }
@@ -172,6 +176,7 @@ const openweathermapController = {
               day: formatDate.getDate(),
               hour: formatDate.getHours(),
               minute: formatDate.getMinutes(),
+              second: formatDate.getSeconds(),
             },
             o3: {
               value: item.o3,

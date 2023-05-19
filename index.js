@@ -18,7 +18,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // PORT
-dotenv.config({ path: "./configs/config.env" });
+dotenv.config({ path: "config.env" });
 
 // MONGODB CONNECTION
 connectDB();
@@ -49,20 +49,23 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-// AUTO UPDATE DATA FROM OPEN WEATHER MAP
-// LONG
-cron.schedule("20 12 * * *",() => {
-    console.log("UPDATE DATA FORM WEATHER API");
-    getWeather();
+cron.schedule(
+  "30 12 * * *",
+  () => {
+    console.log("UPDATE DATA");
+    // getWeather();
   },
   {
     scheduled: true,
     timezone: "Asia/Ho_Chi_Minh",
   }
 );
-cron.schedule("20 22 * * *",() => {
-  console.log("UPDATE DATA FORM WEATHER API");
-  getWeather();
+
+cron.schedule(
+  "30 22 * * *",
+  () => {
+    console.log("UPDATE DATA");
+    getWeather();
   },
   {
     scheduled: true,

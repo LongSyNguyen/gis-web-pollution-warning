@@ -1,7 +1,8 @@
 const router = require("express").Router();
 
 const loginRender = require("../controllers/webController/login");
-const homeRender = require("../controllers/webController/home");
+const airStationStatsRender = require("../controllers/webController/stats_air_station");
+const openweathermapStatsRender = require("../controllers/webController/stats_openweathermap");
 
 const airRender = require("../controllers/webController/air");
 const openweathermapRender = require("../controllers/webController/openweathermap");
@@ -16,7 +17,8 @@ const initAPIRoute = (app) => {
   /**
    * @description DASHBOARD ROUTES
    */
-  router.get("/dashboard/home", homeRender.getHomePage);
+  router.get("/dashboard/stats/stations/air", airStationStatsRender.getStatsPage);
+  router.get("/dashboard/stats/open-api/openweathermap", openweathermapStatsRender.getStatsPage);
   /**
    * @description MANAGEMENT ROUTES
    */

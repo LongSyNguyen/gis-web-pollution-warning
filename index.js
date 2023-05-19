@@ -18,7 +18,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // PORT
-dotenv.config({ path: "config.env" });
+dotenv.config({ path: "./configs/config.env" });
 
 // MONGODB CONNECTION
 connectDB();
@@ -46,7 +46,7 @@ app.get("*", (req, res) => {
 
 // SERVER RUNNING
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}/admin/dashboard/stats/open-api/openweathermap`);
 });
 
 cron.schedule(

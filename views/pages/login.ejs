@@ -17,7 +17,6 @@ const TITLE = locals.title;
     <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.theme.min.css">
     <link rel="stylesheet" href="/vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="/vendors/flags-icon/css/flag-icon.min.css">
 
     <!-- END Template CSS-->
 
@@ -34,28 +33,21 @@ const TITLE = locals.title;
     <div class="container">
         <div class="row vh-100 justify-content-between align-items-center">
             <div class="col-12">
-                <form action="#" class="row row-eq-height lockscreen  mt-5 mb-5">
+                <form id="login-form" class="row row-eq-height lockscreen mt-5 mb-5">
                     <div class="lock-image col-12 col-sm-5"></div>
                     <div class="login-form col-12 col-sm-7">
                         <div class="form-group mb-3">
-                            <label for="emailaddress">Địa chỉ Email</label>
-                            <input class="form-control" type="email" id="emailaddress" required=>
+                            <label for="email">Địa chỉ Email</label>
+                            <input class="form-control" type="email" id="email" required>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="password">Mật khẩu</label>
-                            <input class="form-control" type="password" required id="password">
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked="">
-                                <label class="custom-control-label" for="checkbox-signin">Lưu đăng nhập</label>
-                            </div>
+                            <input class="form-control" type="password" id="password" required>
                         </div>
 
                         <div class="form-group mb-0">
-                            <button class="btn btn-primary" type="submit"> Log In </button>
+                            <button class="btn btn-primary" type="submit">Log In</button>
                         </div>
                     </div>
                 </form>

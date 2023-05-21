@@ -8,6 +8,7 @@ const bodyparser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
 const cron = require("node-cron");
+const cookieParser = require("cookie-parser");
 
 // MODULES
 const connectDB = require("./configs/database");
@@ -18,12 +19,13 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 // PORT
-dotenv.config({ path: "./configs/config.env" });
+dotenv.config({ path: "config.env" });
 
 // MONGODB CONNECTION
 connectDB();
 
 // USE MIDDLEWARE LIBARIES
+app.use(cookieParser());
 app.use(morgan("dev")); // log requests in terminal
 app.use(bodyparser.json()); // converts the request into an object which is called 'body.req'
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -40,20 +42,20 @@ app.use(express.static(path.resolve(__dirname, "assets"))); // load assets
 initWebRoute(app); // web routes
 initAPIRoute(app); // api routes
 // 404 route
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.render("pages/404-error.ejs", { layout: false });
 })
 
 // SERVER RUNNING
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}/admin/dashboard/stats/open-api/openweathermap`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-cron.schedule(
-  "30 12 * * *",
-  () => {
-    console.log("UPDATE DATA");
-    // getWeather();
+// AUTO UPDATE DATA FROM OPEN WEATHER MAP
+// LONG
+cron.schedule("30 12 * * *",() => {
+    console.log("Update Data from Open Weather");
+    getWeather();
   },
   {
     scheduled: true,
@@ -61,10 +63,9 @@ cron.schedule(
   }
 );
 
-cron.schedule(
-  "30 22 * * *",
-  () => {
-    console.log("UPDATE DATA");
+// CHẠY SAU 12H
+cron.schedule("30 22 * * *",() => {
+    console.log("Update Data from Open Weather");
     getWeather();
   },
   {

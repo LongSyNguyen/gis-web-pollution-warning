@@ -17,7 +17,7 @@
         return item.o3.value;
       }
       if (measured_choice.val() == "pm2_5") {
-        return item.o3.value;
+        return item.pm2_5.value;
       }
       if (measured_choice.val() == "pm10") {
         return item.pm10.value;
@@ -37,7 +37,7 @@
         return item.o3.aqi;
       }
       if (measured_choice.val() == "pm2_5") {
-        return item.o3.aqi;
+        return item.pm2_5.aqi;
       }
       if (measured_choice.val() == "pm10") {
         return item.pm10.aqi;
@@ -286,10 +286,19 @@
     if(daterange_choice_val == "all_hour_in_current_day") {
       month_choice.parent().hide();
       day_choice.parent().hide();
-      barChartShow({
-        area: "all_location_in_state",
-        rangetime: "all_hour_in_current_day",
-      });
+
+      // Handle event
+      if (location_choice_val == "all_location_in_state") {
+        barChartShow({
+          area: "all_location_in_state",
+          rangetime: "all_hour_in_current_day",
+        });
+      } else {
+        barChartShow({
+          area: "each_location_in_state",
+          rangetime: "all_hour_in_current_day",
+        });
+      }
     }
     // Dữ liệu trong năm
     if (daterange_choice_val == "all_month_in_year") {

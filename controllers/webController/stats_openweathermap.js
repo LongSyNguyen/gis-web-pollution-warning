@@ -2,7 +2,6 @@
  * @description
  * css_path and script_path start from "pages" folder
  */
-
 const description = "Gis Web Management";
 const ApiWeather = require("../../models/ApiWeatherModel");
 
@@ -54,6 +53,8 @@ const openweathermapStatsRender = {
       data.current_year = uniqueYear[0];
       data.total_location = uniqueLocation.length;
       data.all_unique_locations = uniqueLocation;
+
+      // console.log(data)
 
       return res.render(
         "pages/dashboard/stats/open-api/stats_openweathermap.ejs",

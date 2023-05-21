@@ -73,3 +73,4 @@ cron.schedule("30 22 * * *",() => {
     timezone: "Asia/Ho_Chi_Minh",
   }
 );
+

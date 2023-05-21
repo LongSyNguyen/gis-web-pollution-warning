@@ -43,13 +43,21 @@ const getWeather = async () => {
           appid: "aea8f48cc62acada70be71623f56f3eb",
         },
       });
-      const { coord, list } = response.data;
+      const list = response.data;
+      const date = new Date();
 
+      const day = date.getDate(); // Lấy ngày (1-31)
+      const month = date.getMonth() + 1; // Lấy tháng (0-11), cộng 1 vì tháng bắt đầu từ 0
+      const year = date.getFullYear(); // Lấy năm (đầy đủ 4 chữ số)
       const airPollutionData = {
         location: {
           district_city: district.name,
           latitude: district.lat,
           longitude: district.lon,
+        },
+        notification:{
+          title: `Dữ liệu cập nhật ngày ${day}/${month}/${year}`,
+          message: "Bấm vào để xem chi tiết"
         },
         date: {
           date_type: new Date(list[0].dt * 1000).toISOString(),
@@ -63,7 +71,6 @@ const getWeather = async () => {
         pm10: list[0].components.pm10,
       };
       await ApiWeatherModel.insertMany(airPollutionData);
-      console.log("OpenWeatherMap-GET", airPollutionData);
     } catch (error) {
       console.log(error.message);
     }

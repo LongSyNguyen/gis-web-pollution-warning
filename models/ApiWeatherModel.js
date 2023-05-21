@@ -16,6 +16,16 @@ const apiWeatherSchema = new mongoose.Schema({
       required: true,
     },
   },
+  notification :{
+    title: {
+      type: String,
+      required: true,
+    },
+    message: {
+      type: String,
+      required: true,
+    }
+  },
   date: {
     date_type: {
       type: Date,

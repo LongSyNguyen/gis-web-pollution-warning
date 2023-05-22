@@ -40,9 +40,10 @@ const airController = {
               _id: item._id,
               location: {
                 address: item.location.address,
+                state: item.location.state,
+                commune: item.location.commune,
                 latitude: item.location.latitude,
                 longitude: item.location.longitude,
-                state: item.location.state,
               },
               date: {
                 iso: date,
@@ -76,7 +77,7 @@ const airController = {
 
   filterAirInfor: async (req, res) => {
     try {
-      const { address, state, lat, long, current_date } = req.query;
+      const { address, state, lat, long } = req.query;
       const { fromdate, todate } = req.query;
 
       var filter = {};
@@ -91,6 +92,13 @@ const airController = {
         filter = {
           ...filter,
           "location.state": { $regex: state, $options: "i" },
+        };
+      }
+
+      if (commune) {
+        filter = {
+          ...filter,
+          "location.commune": { $regex: commune, $options: "i" },
         };
       }
 
@@ -115,55 +123,6 @@ const airController = {
         };
       }
 
-      if (current_date) {
-        const today = new Date();
-        switch (current_date) {
-          case "day":
-            filter = {
-              ...filter,
-              $expr: {
-                $and: [
-                  {
-                    $eq: [{ $dayOfMonth: "$date.date_type" }, today.getDate()],
-                  },
-                  {
-                    $eq: [{ $month: "$date.date_type" }, today.getMonth() + 1],
-                  },
-                  { $eq: [{ $year: "$date.date_type" }, today.getFullYear()] },
-                ],
-              },
-            };
-            break;
-          case "month":
-            filter = {
-              ...filter,
-              $expr: {
-                $and: [
-                  {
-                    $eq: [{ $month: "$date.date_type" }, today.getMonth() + 1],
-                  },
-                  { $eq: [{ $year: "$date.date_type" }, today.getFullYear()] },
-                ],
-              },
-            };
-            break;
-          case "year":
-            filter = {
-              ...filter,
-              $expr: {
-                $and: [
-                  { $eq: [{ $year: "$date.date_type" }, today.getFullYear()] },
-                ],
-              },
-            };
-            break;
-          default:
-            filter = {
-              ...filter,
-            };
-        }
-      }
-
       Air.find(filter)
         .sort({ "date.date_type": -1 })
         .exec(function (err, data) {
@@ -178,9 +137,10 @@ const airController = {
               _id: item._id,
               location: {
                 address: item.location.address,
+                state: item.location.state,
+                commune: item.location.commune,
                 latitude: item.location.latitude,
                 longitude: item.location.longitude,
-                state: item.location.state,
               },
               date: {
                 iso: date,

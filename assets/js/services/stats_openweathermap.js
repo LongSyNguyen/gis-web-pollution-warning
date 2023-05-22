@@ -71,7 +71,6 @@
 
   // BAR CHART
   var myBarChart = echarts.init(document.getElementById("e-basic-bar"));
-
   var baroption = {
     visualMap: {
       orient: "horizontal",
@@ -83,6 +82,11 @@
       dimension: 0,
       inRange: {
         color: ["#00e400", "#ff0", "#ff7e00", "#f00", "#8f3f97", "#7e0023"],
+      },
+      itemWidth: 20, // Chỉnh kích thước chiều rộng của các ô màu
+      itemHeight: 180, // Chỉnh kích thước chiều cao của các ô màu
+      textStyle: {
+        fontSize: 13.5, // Chỉnh kích thước fontsize ở đây
       },
     },
     grid: { containLabel: true },

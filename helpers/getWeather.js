@@ -43,7 +43,8 @@ const getWeather = async () => {
           appid: "aea8f48cc62acada70be71623f56f3eb",
         },
       });
-      const {list} = response.data;
+      const { coord, list } = response.data;
+
       const airPollutionData = {
         location: {
           district_city: district.name,
@@ -62,6 +63,7 @@ const getWeather = async () => {
         pm10: list[0].components.pm10,
       };
       await ApiWeatherModel.insertMany(airPollutionData);
+      console.log("OpenWeatherMap-GET", airPollutionData);
     } catch (error) {
       console.log(error.message);
     }

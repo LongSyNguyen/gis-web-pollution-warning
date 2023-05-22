@@ -52,6 +52,7 @@ const airRender = {
             query.$or = [
               { "location.address": { $regex: searchValue, $options: "i" } },
               { "location.state": { $regex: searchValue, $options: "i" } },
+              { "location.commune": { $regex: searchValue, $options: "i" } },
               { "location.latitude": searchValue, expectedType: "Double" },
               { "location.longitude": searchValue, expectedType: "Double" },
               { "date.string_type": { $regex: searchValue, $options: "i" } },
@@ -69,6 +70,7 @@ const airRender = {
                 {
                   "location.address": { $regex: searchValue, $options: "i" },
                 },
+                { "location.commune": { $regex: searchValue, $options: "i" } },
                 { "date.string_type": { $regex: searchValue, $options: "i" } },
               ];
             }
@@ -104,6 +106,7 @@ const airRender = {
                 _id: item._id,
                 address: item.location.address,
                 state: item.location.state,
+                commune: item.location.commune,
                 latitude: item.location.latitude,
                 longitude: item.location.longitude,
                 date: new Date(item.date.string_type),

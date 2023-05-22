@@ -54,7 +54,7 @@ app.listen(PORT, () => {
 // AUTO UPDATE DATA FROM OPEN WEATHER MAP
 // LONG
 cron.schedule("30 12 * * *",() => {
-    console.log("Update Data from Open Weather");
+    console.log("GET DATA API WEATHER");
     getWeather();
   },
   {
@@ -65,7 +65,7 @@ cron.schedule("30 12 * * *",() => {
 
 // CHẠY SAU 12H
 cron.schedule("30 22 * * *",() => {
-    console.log("Update Data from Open Weather");
+    console.log("GET DATA API WEATHER");
     getWeather();
   },
   {
@@ -74,3 +74,15 @@ cron.schedule("30 22 * * *",() => {
   }
 );
 
+// CHẠY SAU 1 PHÚT
+// cron.schedule(
+//   "1 * * * * *",
+//   () => {
+//     console.log("running 12 hours");
+//     getWeather();
+//   },
+//   {
+//     scheduled: true,
+//     timezone: "Asia/Ho_Chi_Minh",
+//   }
+// );

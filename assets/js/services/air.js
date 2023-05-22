@@ -51,7 +51,7 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // chỉ xuất các cột 0, 1, 3
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -61,7 +61,7 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // chỉ xuất các cột 0, 1, 3
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -71,7 +71,7 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // chỉ xuất các cột 0, 1, 3
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -81,7 +81,7 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12], // chỉ xuất các cột 0, 1, 3
+              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -126,6 +126,7 @@
       { data: "_id", name: "Id" },
       { data: "address", name: "Địa chỉ" },
       { data: "state", name: "Tỉnh" },
+      { data: "commune", name: "Xã" },
       { data: "latitude", name: "Latitude" },
       { data: "longitude", name: "Longitude" },
       { data: "date", name: "Ngày giờ" },
@@ -172,6 +173,7 @@
 
   var address_valid = $("#AdressValid");
   var state_valid = $("#StateValid");
+  var commune_valid = $("#CommuneValid");
   var latitude_valid = $("#LatitudeValid");
   var longitude_valid = $("#LongitudeValid");
   var date_valid = $("#DateValid");
@@ -205,6 +207,7 @@
         // lấy dữ liệu để truyền vào form
         address_valid.val(res.location.address);
         state_valid.val(res.location.state);
+        commune_valid.val(res.location.commune);
         latitude_valid.val(res.location.latitude);
         longitude_valid.val(res.location.longitude);
         date_valid.val(formatDate(res.date.string_type));
@@ -226,16 +229,17 @@
       location: {
         address: address_valid.val(),
         state: state_valid.val(),
+        commune: commune_valid.val(),
         latitude: latitude_valid.val(),
         longitude: longitude_valid.val(),
       },
       date: {
         string_type: date_valid.val(),
-        date_type: date_valid.val()
+        date_type: date_valid.val(),
       },
       tsp: tsp_valid.val(),
       so2: so2_valid.val(),
-      no2: no2_valid.val()
+      no2: no2_valid.val(),
     };
 
     // Nếu có id, nghĩa là thực hiện tính năng update
@@ -477,16 +481,17 @@
         location: {
           address: row[0],
           state: row[1],
-          latitude: row[2],
-          longitude: row[3],
+          commune: row[2],
+          latitude: row[3],
+          longitude: row[4],
         },
         date: {
-          string_type: convertStringToDate(row[4]),
-          date_type: convertStringToDate(row[4])
+          string_type: convertStringToDate(row[5]),
+          date_type: convertStringToDate(row[5]),
         },
-        tsp: row[5],
-        so2: row[6],
-        no2: row[7],
+        tsp: row[6],
+        so2: row[7],
+        no2: row[8],
       };
     });
 

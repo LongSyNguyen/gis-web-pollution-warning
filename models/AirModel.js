@@ -11,6 +11,10 @@ const airQualitySchema = new mongoose.Schema({
       type: String,
       required: true,
     },
+    commune: {
+      type: String,
+      required: true,
+    },
     latitude: {
       type: Number,
       required: true,

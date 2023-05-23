@@ -53,7 +53,6 @@ const airStationStatsRender = {
       data.current_year = uniqueYear[0];
       data.total_location = uniqueLocation.length;
       data.all_unique_locations = uniqueLocation;
-
       return res.render("pages/dashboard/stats/stations/stats_air.ejs", {
         locals,
         layout: "layouts/main",

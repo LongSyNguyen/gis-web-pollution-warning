@@ -3,7 +3,9 @@
   <div class="col-12 col-sm-6 col-xl-4 mt-3">
     <div class="card">
       <div class="card-body text-info border-bottom border-info border-w-5">
-        <h2 class="text-center"><%= data.total_location %></h2>
+        <h2 class="text-center">
+          <%= data.total_location %>
+        </h2>
         <h6 class="text-center">Điểm lấy mẫu</h6>
       </div>
     </div>
@@ -11,7 +13,7 @@
   <div class="col-12 col-sm-6 col-xl-4 mt-3">
     <div class="card">
       <div class="card-body text-success border-bottom border-success border-w-5">
-        <h2 class="text-center">3</h2>
+        <h2 class="text-center">6</h2>
         <h6 class="text-center">Loại chỉ số quan trắc</h6>
       </div>
     </div>
@@ -28,7 +30,6 @@
 
 <!-- CHART -->
 <div class="row">
-  <!-- Chart -->
   <div class="col-12 col-md-12 mt-3">
     <div class="card">
       <div class="card-header">
@@ -42,21 +43,23 @@
         </div>
         <h6 class="card-title">Lựa chọn hiển thị</h6>
         <div class="row">
-          <div class="col-12 col-md-6 mt-3">
+          <div class="col-12 col-md-3 mt-3">
             <select id="location-choices">
-              <option value="avg_all_location_in_state" selected>Trung bình toàn khu vực tỉnh Hà Nam</option>
+              <option value="all_location_in_state" selected>Trung bình các khu vực tỉnh Hà Nam</option>
               <% for(let i=0; i < data.all_unique_locations.length; i++) { %>
-                <option value="<%= data.all_unique_locations[i].latitude %>_<%= data.all_unique_locations[i].longitude %>">
+                <option
+                  value="<%= data.all_unique_locations[i].latitude %>_<%= data.all_unique_locations[i].longitude %>">
                   <%= data.all_unique_locations[i].address %>
                 </option>
                 <% } %>
             </select>
           </div>
           <div class="col-12 col-md-2 mt-3">
-            <select id="measured-choices">
-              <option value="tsp" selected>TSP</option>
-              <option value="so2">NO2</option>
-              <option value="no2">SO2</option>
+            <select id="daterange-choices">
+              <option value="all_hour_in_current_day" selected>Dữ liệu ngày hôm nay</option>
+              <option value="all_month_in_year">Dữ liệu trong năm</option>
+              <option value="all_day_in_month">Dữ liệu trong tháng</option>
+              <option value="all_hour_in_day">Dữ liệu trong ngày</option>
             </select>
           </div>
           <div class="col-12 col-md-2 mt-3">
@@ -71,21 +74,42 @@
             </select>
           </div>
           <div class="col-12 col-md-2 mt-3">
-            <select id="daterange-choices">
-              <option value="all_month_in_year" selected>Dữ liệu 12 tháng</option>
-              <option value="all_day_in_month">Dữ liệu từng tháng</option>
-            </select>
-          </div>
-          <div class="col-12 col-md-2 mt-3">
             <select id="month-choices">
               <option value="1" selected>Tháng 1</option>
               <% for(let i=2; i < 13; i++) { %>
-              <option value="<%= i %>">
-                Tháng <%= i %>
-              </option>
-              <% } %>
+                <option value="<%= i %>">
+                  Tháng <%= i %>
+                </option>
+                <% } %>
             </select>
           </div>
+          <div class="col-12 col-md-2 mt-3">
+            <select id="day-choices">
+              <option value="1" selected>Ngày 1</option>
+              <% for(let i=2; i < 31; i++) { %>
+                <option value="<%= i %>">
+                  Ngày <%= i %>
+                </option>
+                <% } %>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Chart -->
+<div class="row">
+  <div class="col-12 col-md-7 mt-3">
+    <div class="card">
+      <div class="card-header">
+        <h6 class="card-title">Biểu đồ quan hệ giữa Thời gian - Chỉ số hoá học - AQI</h6>
+        <div class="col-12 col-md-3 mt-3">
+          <select id="measured-choices">
+            <option value="tsp" selected>TSP</option>
+            <option value="so2">SO2</option>
+            <option value="no2">NO2</option>
+          </select>
         </div>
       </div>
       <div class="card-body">
@@ -98,6 +122,16 @@
           <span class="badge badge-color-p6">Nguy hiểm</span>
         </div>
         <div id="e-basic-bar" class="height-400"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-5 mt-3">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h6 class="card-title">Biểu đồ tỉ trọng giữa các chỉ số AQI của các chất</h6>
+      </div>
+      <div class="card-body">
+        <div id="e-doughnut-chart" class="height-400"></div>
       </div>
     </div>
   </div>

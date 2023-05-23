@@ -27,7 +27,7 @@ const airController = {
   getAllAirInfor: async (req, res) => {
     try {
       Air.find()
-        .sort({ date: -1 })
+        .sort({ "date.date_type": -1 })
         .exec(function (err, data) {
           if (err) {
             console.error(err);
@@ -35,7 +35,7 @@ const airController = {
           }
           const formattedData = [];
           for (const item of data) {
-            const date = new Date(item.date.date_type);
+            const formatDate = new Date(item.date.date_type);
             formattedData.push({
               _id: item._id,
               location: {
@@ -46,10 +46,13 @@ const airController = {
                 longitude: item.location.longitude,
               },
               date: {
-                iso: date,
-                day: date.getDate(),
-                month: date.getMonth() + 1,
-                year: date.getFullYear(),
+                iso: formatDate,
+                day: formatDate.getDate(),
+                month: formatDate.getMonth() + 1,
+                year: formatDate.getFullYear(),
+                hour: formatDate.getHours(),
+                minute: formatDate.getMinutes(),
+                second: formatDate.getSeconds(),
               },
               tsp: {
                 value: item.tsp,
@@ -77,7 +80,7 @@ const airController = {
 
   filterAirInfor: async (req, res) => {
     try {
-      const { address, state, lat, long } = req.query;
+      const { address, state, lat, long, commune } = req.query;
       const { fromdate, todate } = req.query;
 
       var filter = {};
@@ -132,7 +135,7 @@ const airController = {
           }
           const formattedData = [];
           for (const item of data) {
-            const date = new Date(item.date.date_type);
+            const formatDate = new Date(item.date.date_type);
             formattedData.push({
               _id: item._id,
               location: {
@@ -143,10 +146,13 @@ const airController = {
                 longitude: item.location.longitude,
               },
               date: {
-                iso: date,
-                day: date.getDate(),
-                month: date.getMonth() + 1,
-                year: date.getFullYear(),
+                iso: formatDate,
+                day: formatDate.getDate(),
+                month: formatDate.getMonth() + 1,
+                year: formatDate.getFullYear(),
+                hour: formatDate.getHours(),
+                minute: formatDate.getMinutes(),
+                second: formatDate.getSeconds(),
               },
               tsp: {
                 value: item.tsp,

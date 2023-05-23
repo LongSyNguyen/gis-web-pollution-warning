@@ -5,7 +5,7 @@ const calResultByAqi = require("../../helpers/result_calculator");
 const openweathermapController = {
   getAllAirInfor: async (req, res) => {
     try {
-      ApiWeather.find().sort({ date: -1 }).exec(
+      ApiWeather.find().sort({ "date.date_type": -1 }).exec(
         function(err, data) {
           if (err) {
             console.error(err);
@@ -73,8 +73,8 @@ const openweathermapController = {
 
   filterAirInfor: async (req, res) => {
     try {
-      const { district_city, lat, long, current_date } = req.query;
-      const { fromdate, todate, exactdate } = req.query;
+      const { district_city, lat, long} = req.query;
+      const { fromdate, todate} = req.query;
 
       var filter = {};
       if (district_city) {
@@ -103,55 +103,6 @@ const openweathermapController = {
             $lte: new Date(toDate),
           },
         };
-      }
-
-      if (current_date) {
-        const today = new Date();
-        switch (current_date) {
-          case "day":
-            filter = {
-              ...filter,
-              $expr: {
-                $and: [
-                  {
-                    $eq: [{ $dayOfMonth: "$date.date_type" }, today.getDate()],
-                  },
-                  {
-                    $eq: [{ $month: "$date.date_type" }, today.getMonth() + 1],
-                  },
-                  { $eq: [{ $year: "$date.date_type" }, today.getFullYear()] },
-                ],
-              },
-            };
-            break;
-          case "month":
-            filter = {
-              ...filter,
-              $expr: {
-                $and: [
-                  {
-                    $eq: [{ $month: "$date.date_type" }, today.getMonth() + 1],
-                  },
-                  { $eq: [{ $year: "$date.date_type" }, today.getFullYear()] },
-                ],
-              },
-            };
-            break;
-          case "year":
-            filter = {
-              ...filter,
-              $expr: {
-                $and: [
-                  { $eq: [{ $year: "$date.date_type" }, today.getFullYear()] },
-                ],
-              },
-            };
-            break;
-          default:
-            filter = {
-              ...filter,
-            };
-        }
       }
 
       ApiWeather.find(filter).sort({ "date.date_type": -1 }).exec(function (err, data) {

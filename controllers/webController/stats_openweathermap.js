@@ -54,8 +54,6 @@ const openweathermapStatsRender = {
       data.total_location = uniqueLocation.length;
       data.all_unique_locations = uniqueLocation;
 
-      console.log(data)
-
       return res.render(
         "pages/dashboard/stats/open-api/stats_openweathermap.ejs",
         {

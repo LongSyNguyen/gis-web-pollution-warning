@@ -30,7 +30,6 @@
 
 <!-- CHART -->
 <div class="row">
-  <!-- Chart -->
   <div class="col-12 col-md-12 mt-3">
     <div class="card">
       <div class="card-header">
@@ -94,16 +93,26 @@
                 <% } %>
             </select>
           </div>
-          <div class="col-12 col-md-1 mt-3">
-            <select id="measured-choices">
-              <option value="pm2_5" selected>PM 2.5</option>
-              <option value="pm10">PM10</option>
-              <option value="o3">O3</option>
-              <option value="co">CO</option>
-              <option value="so2">SO2</option>
-              <option value="no2">NO2</option>
-            </select>
-          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Chart -->
+<div class="row">
+  <div class="col-12 col-md-7 mt-3">
+    <div class="card">
+      <div class="card-header">
+        <h6 class="card-title">Biểu đồ quan hệ giữa Thời gian - Chỉ số hoá học - AQI</h6>
+        <div class="col-12 col-md-3 mt-3">
+          <select id="measured-choices">
+            <option value="pm2_5" selected>PM 2.5</option>
+            <option value="pm10">PM10</option>
+            <option value="o3">O3</option>
+            <option value="co">CO</option>
+            <option value="so2">SO2</option>
+            <option value="no2">NO2</option>
+          </select>
         </div>
       </div>
       <div class="card-body">
@@ -116,6 +125,16 @@
           <span class="badge badge-color-p6">Nguy hiểm</span>
         </div>
         <div id="e-basic-bar" class="height-400"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-5 mt-3">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h6 class="card-title">Biểu đồ tỉ trọng giữa các chỉ số AQI của các chất</h6>
+      </div>
+      <div class="card-body">
+        <div id="e-doughnut-chart" class="height-400"></div>
       </div>
     </div>
   </div>

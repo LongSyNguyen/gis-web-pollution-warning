@@ -3,7 +3,7 @@ const ApiWeatherModel = require("../models/ApiWeatherModel");
 
 const DISTRICTS = [
   { name: "Ba Đình", lat: 21.03468, lon: 105.81432 },
-  { name: "Bắc Từ Liêm", lat: 21.06957, lon: 105.75357 },
+  { name: "Bắc Từ Liêm", lat: 21.070049, lon: 105.775186 },
   { name: "Cầu Giấy", lat: 21.02905, lon: 105.79136 },
   { name: "Chương Mỹ", lat: 20.95156, lon: 105.66992 },
   { name: "Đan Phượng", lat: 21.08628, lon: 105.67069 },

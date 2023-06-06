@@ -30,6 +30,12 @@ const DISTRICTS = [
   { name: "Thanh Xuân", lat: 20.99347, lon: 105.8143 },
   { name: "Thường Tín", lat: 20.87074, lon: 105.86057 },
   { name: "Ứng Hòa", lat: 20.72076, lon: 105.78011 },
+  { name: "Thành phố Phủ Lý", lat: 20.467330, lon: 105.930799},
+  { name: "Thanh Liêm", lat: 20.540254, lon: 105.91571 },
+  { name: "Bình Lục", lat: 20.503553, lon: 106.040921 },
+  { name: "Duy Tiên", lat: 20.634471, lon: 105.963506 },
+  { name: "Lý Nhân", lat: 20.568026, lon: 106.098202 },
+  { name: "Kim Bảng", lat: 20.551834 , lon: 105.834574 },
 ];
 
 const getWeather = async () => {

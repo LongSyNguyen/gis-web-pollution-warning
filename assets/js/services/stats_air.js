@@ -45,8 +45,9 @@
     }
     if (type == "hour") {
       const hour = item.date.hour;
-      const minute = item.date.minute;
-      const timeKey = `${hour}:${minute}`;
+      // const minute = item.date.minute;
+      // const timeKey = `${hour}:${minute}`;
+      const timeKey = `${hour}`;
       return timeKey;
     }
   }
@@ -99,7 +100,7 @@
     let time_asign; // Cái này giành cho barchart
 
     if (option.rangetime == "all_hour_in_current_day") {
-      time_asign = "Thời gian ";
+      time_asign = "";
       let currentDate = new Date();
       let currentDay = currentDate.getDate();
       let currentMonth = currentDate.getMonth() + 1;
@@ -158,7 +159,7 @@
     }
 
     if (option.rangetime == "all_hour_in_day") {
-      time_asign = "Thời gian ";
+      time_asign = "";
       let exactdate =
         year_choice.val() + "-" + month_choice.val() + "-" + day_choice.val();
       if (option.area == "all_location_in_state") {
@@ -242,7 +243,7 @@
               newData.push([
                 aqiAverage,
                 measuredAverage,
-                time_asign + time_val,
+                time_asign + time_val + " giờ",
               ]);
             } else {
               newData.push([

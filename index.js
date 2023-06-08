@@ -53,9 +53,9 @@ app.listen(PORT, () => {
 
 // AUTO UPDATE DATA FROM OPEN WEATHER MAP
 // LONG
-cron.schedule("46 17 * * *",() => {
+cron.schedule("12 17 * * *",() => {
     console.log("UPDATE DATA FROM OPEN WEATHER MAP");
-    getWeather();
+    // getWeather();
   },
   {
     scheduled: true,
@@ -63,9 +63,9 @@ cron.schedule("46 17 * * *",() => {
   }
 );
 
-cron.schedule("09 17 * * *",() => {
+cron.schedule("00 22 * * *",() => {
     console.log("UPDATE DATA FROM OPEN WEATHER MAP");
-    getWeather();
+    // getWeather();
   },
   {
     scheduled: true,
@@ -73,3 +73,4 @@ cron.schedule("09 17 * * *",() => {
   }
 );
 
+getWeather();

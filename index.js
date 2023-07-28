@@ -9,7 +9,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const cron = require("node-cron");
 const cookieParser = require("cookie-parser");
-
+const deleteDuplicatates = require("./helpers/deleteDuplicatates")
 // MODULES
 const connectDB = require("./configs/database");
 const initWebRoute = require("./routes/web");
@@ -72,5 +72,4 @@ cron.schedule("00 22 * * *",() => {
     timezone: "Asia/Ho_Chi_Minh",
   }
 );
-
-getWeather();
+// deleteDuplicatates.airCollection()

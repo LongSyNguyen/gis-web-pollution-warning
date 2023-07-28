@@ -1,4 +1,4 @@
-const Air = require("../models/AirModel");
+const Air = require("../models/ApiWeatherModel");
 
 const deleteDuplicatates = {
   airCollection: async (req, res, next) => {
@@ -10,7 +10,7 @@ const deleteDuplicatates = {
               _id: {
                 longitude: "$location.longitude",
                 latitude: "$location.latitude",
-                date: "$date",
+                date: "$date.date_type",
               },
               dups: {
                 $push: "$_id",

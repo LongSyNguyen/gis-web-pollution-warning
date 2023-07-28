@@ -11,6 +11,7 @@ const openweathermapStatsRender = require("../controllers/webController/stats_op
 
 const airRender = require("../controllers/webController/air");
 const openweathermapRender = require("../controllers/webController/openweathermap");
+const webcrawlRender = require("../controllers/webController/web_crawl");
 
 const profileRender = require("../controllers/webController/profile");
 
@@ -59,10 +60,29 @@ const initAPIRoute = (app) => {
     userAuth.requireAuth,
     openweathermapRender.fetchDataTables
   );
+
+  
+  // Web crawl
+  router.get(
+    "/management/env-data/web-crawl/baotainguyenmoitruong",
+    userAuth.requireAuth,
+    webcrawlRender.getWebCrawlPage
+  );
+  router.post(
+    "/management/env-data/web-crawl/baotainguyenmoitruong/datatables",
+    userAuth.requireAuth,
+    webcrawlRender.fetchDataTables
+  );
+
+
   /**
    * @description CONFIG ROUTES
    */
-  router.get("/config/profile", userAuth.requireAuth, profileRender.getProfilePage);
+  router.get(
+    "/config/profile",
+    userAuth.requireAuth,
+    profileRender.getProfilePage
+  );
   router.put(
     "/config/profile-update",
     userAuth.requireAuth,

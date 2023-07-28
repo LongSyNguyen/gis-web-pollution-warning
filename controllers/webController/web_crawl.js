@@ -1,10 +1,9 @@
-const ApiWeather = require("../../models/ApiWeatherModel");
-const Aqi = require("../../helpers/aqi_calculator");
+const News = require("../../models/NewsModel");
 const checkDataType = require("../../helpers/check_dataType");
 
-const openweathermapRender = {
+const webcrawlRender = {
   // GET ENVIRONMENT DATA MANAGEMENT PAGE
-  getAirPage: async (req, res) => {
+  getWebCrawlPage: async (req, res) => {
     const locals = {
       breadcrumb: [
         {
@@ -16,21 +15,22 @@ const openweathermapRender = {
           link: "#",
         },
         {
-          tag: "Open weather map",
-          link: "/admin/management/env-data/open-api/openweathermap",
+          tag: "Báo tài nguyên môi trường",
+          link: "/management/env-data/web-crawl/baotainguyenmoitruong",
         },
       ],
-      title: "Admin | Open weather map",
+      title: "Admin | Báo tài nguyên môi trường",
       page_required: {
         // css_path and script_path start from "pages" folder
-        css_path: "management/env_data/open-api/openweathermap/_css",
-        script_path: "management/env_data/open-api/openweathermap/_script",
+        css_path: "management/env_data/web-crawl/baotainguyenmoitruong/_css",
+        script_path:
+          "management/env_data/web-crawl/baotainguyenmoitruong/_script",
       },
       description: "Gis Web Management",
     };
 
     return res.render(
-      "pages/management/env_data/open-api/openweathermap/openweathermap.ejs",
+      "pages/management/env_data/web-crawl/baotainguyenmoitruong/web-crawl.ejs",
       {
         locals,
         layout: "layouts/main",
@@ -53,23 +53,16 @@ const openweathermapRender = {
           const searchValue = req.body.search.value;
           if (checkDataType.isNumber(searchValue)) {
             query.$or = [
-              { "location.district_city": { $regex: searchValue, $options: "i" } },
-              { "location.latitude": searchValue, expectedType: "Double" },
-              { "location.longitude": searchValue, expectedType: "Double" },
-              { "date.string_type": { $regex: searchValue, $options: "i" } },
+              { "title": { $regex: searchValue, $options: "i" } },
+              { "href": { $regex: searchValue, $options: "i" } },
             ];
           } else {
             if (checkDataType.isValidObjectId(searchValue)) {
               query.$or = [{ _id: searchValue }];
             } else {
               query.$or = [
-                {
-                  "location.district_city": {
-                    $regex: searchValue,
-                    $options: "i",
-                  },
-                },
-                { "date.string_type": { $regex: searchValue, $options: "i" } },
+              { "title": { $regex: searchValue, $options: "i" } },
+              { "href": { $regex: searchValue, $options: "i" } },
               ];
             }
           }
@@ -83,12 +76,12 @@ const openweathermapRender = {
           const sortDirection = order[0].dir === "asc" ? 1 : -1;
           sortQuery[sortColumn] = sortDirection;
         }
-        ApiWeather.countDocuments(query, function (err, totalCount) {
+        News.countDocuments(query, function (err, totalCount) {
           if (err) {
             console.error(err);
             return res.status(500).json({ error: err });
           }
-          ApiWeather.find(query)
+          News.find(query)
             .sort(sortQuery)
             .skip(start)
             .limit(length)
@@ -101,22 +94,9 @@ const openweathermapRender = {
               const formattedData = data.map((item) => ({
                 index: (i += 1),
                 _id: item._id,
-                district_city: item.location.district_city,
-                latitude: item.location.latitude,
-                longitude: item.location.longitude,
-                date: item.date.string_type,
-                o3: item.o3,
-                pm2_5: item.pm2_5,
-                pm10: item.pm10,
-                co: item.co,
-                so2: item.so2,
-                no2: item.no2,
-                aqi_o3: item.aqi.o3,
-                aqi_pm2_5: item.aqi.pm2_5,
-                aqi_pm10: item.aqi.pm10,
-                aqi_co: item.aqi.co,
-                aqi_so2: item.aqi.so2,
-                aqi_no2: item.aqi.no2,
+                title: item.title,
+                href: item.href,
+                date: item.date,
               }));
               res.status(200).json({
                 draw,
@@ -131,7 +111,7 @@ const openweathermapRender = {
       case "delDataById":
         try {
           const id = req.body.actionId;
-          await ApiWeather.findByIdAndDelete(id);
+          await News.findByIdAndDelete(id);
           res.status(200).json(id);
         } catch (error) {
           res.status(500).json(err);
@@ -143,4 +123,4 @@ const openweathermapRender = {
   },
 };
 
-module.exports = openweathermapRender;
+module.exports = webcrawlRender;

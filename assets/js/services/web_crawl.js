@@ -2,7 +2,7 @@
   /**
    * @description UTILS FUNCTION
    */
-  
+
   /**
    * @description DATATABLE AREA
    */
@@ -19,7 +19,9 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], // chỉ xuất các cột 0, 1, 3
+              columns: [
+                0, 1, 2, 3, 4
+              ], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -29,7 +31,9 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], // chỉ xuất các cột 0, 1, 3
+              columns: [
+                0, 1, 2, 3, 4
+              ], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -39,7 +43,9 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], // chỉ xuất các cột 0, 1, 3
+              columns: [
+                0, 1, 2, 3, 4
+              ], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -49,7 +55,9 @@
             charset: "utf-8", // thêm cấu hình mã hóa UTF-8
             bom: true, // thêm ký tự bom
             exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17], // chỉ xuất các cột 0, 1, 3
+              columns: [
+                0, 1, 2, 3, 4
+              ], // chỉ xuất các cột 0, 1, 3
             },
             title: "Dữ liệu môi trường",
           },
@@ -84,7 +92,7 @@
     },
 
     ajax: {
-      url: "/admin/management/env-data/open-api/openweathermap/datatables",
+      url: "/admin/management/env-data/web-crawl/baotainguyenmoitruong/datatables",
       type: "POST",
       data: { actionType: "getAllData" },
       dataType: "json",
@@ -92,22 +100,9 @@
     columns: [
       { data: "index", name: "STT" },
       { data: "_id", name: "Id" },
-      { data: "district_city", name: "Quận" },
-      { data: "latitude", name: "Latitude" },
-      { data: "longitude", name: "Longitude" },
+      { data: "title", name: "Tiêu đề" },
+      { data: "href", name: "Nguồn" },
       { data: "date", name: "Ngày giờ" },
-      { data: "o3", name: "O3" },
-      { data: "pm2_5", name: "PM2.5" },
-      { data: "pm10", name: "PM10" },
-      { data: "co", name: "CO" },
-      { data: "so2", name: "SO2" },
-      { data: "no2", name: "NO2" },
-      { data: "aqi_o3", name: "AQI-O3" },
-      { data: "aqi_pm2_5", name: "AQI-PM2.5" },
-      { data: "aqi_pm10", name: "AQI-PM10" },
-      { data: "aqi_co", name: "AQI-CO" },
-      { data: "aqi_so2", name: "AQI-SO2" },
-      { data: "aqi_no2", name: "AQI-NO2" },
       {
         // Thêm cột "Action"
         orderable: false,
@@ -144,7 +139,7 @@
     }).then((result) => {
       if (result.isConfirmed) {
         $.ajax({
-          url: "/admin/management/env-data/open-api/openweathermap/datatables",
+          url: "/admin/management/env-data/web-crawl/baotainguyenmoitruong/datatables",
           type: "POST",
           data: { actionId: targetId, actionType: "delDataById" },
           dataType: "json",

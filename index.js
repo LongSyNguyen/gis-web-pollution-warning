@@ -9,7 +9,6 @@ const helmet = require("helmet");
 const cors = require("cors");
 const cron = require("node-cron");
 const cookieParser = require("cookie-parser");
-const deleteDuplicatates = require("./helpers/deleteDuplicatates")
 // MODULES
 const connectDB = require("./configs/database");
 const initWebRoute = require("./routes/web");
@@ -63,9 +62,9 @@ cron.schedule("12 17 * * *",() => {
   }
 );
 
-cron.schedule("00 22 * * *",() => {
+cron.schedule("00 17 * * *",() => {
     console.log("UPDATE DATA FROM OPEN WEATHER MAP");
-    // getWeather();
+    getWeather();
   },
   {
     scheduled: true,
@@ -73,3 +72,23 @@ cron.schedule("00 22 * * *",() => {
   }
 );
 // deleteDuplicatates.airCollection()
+
+
+// Connect Firebase
+
+var admin = require("firebase-admin");
+
+var serviceAccount = require("./serviceAccountKeys.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+const fb = admin.firestore()
+
+let User = fb.collection("User")
+
+User.get().then((querySnapshot)=>{
+  querySnapshot.forEach(document=>{
+    console.log(document.data())
+  })
+})

@@ -93,7 +93,7 @@ const options = {
       }
     },
     servers:[{
-      url:"http://localhost:8080"
+      url:"https://environment-admin.onrender.com/"
     }]
   },
   apis:["./routes/*.js"]

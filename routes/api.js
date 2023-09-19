@@ -116,7 +116,7 @@
  *           format: objectId  # Use "objectId" format for MongoDB ObjectId
  *         required: true
  *         description: The ID of the Data AirQuality record to update.
- *       - in: requestBody
+ *     requestBody:
  *         name: body
  *         required: true
  *         description: Updated Data AirQuality object.

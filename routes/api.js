@@ -139,7 +139,7 @@
  *     tags: [Data AirQuality]
  *     parameters:
  *       - in: path
- *         name: _id
+ *         name: id
  *         schema:
  *           type: string
  *           format: objectId  # Use "objectId" format for MongoDB ObjectId
